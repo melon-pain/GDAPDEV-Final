@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 dir = joystick.direction;
         Move(dir);
-        Look(dir);
+        //Look(dir);
         Lean(dir);
     }
 
@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     {
         this.transform.localPosition += (Vector3)direction * moveSpeed * Time.deltaTime;
         this.ClampPosition();
-
     }
 
     private void ClampPosition()
@@ -40,14 +39,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void Look(Vector2 direction)
     {
-        aimTarget.parent.position = Vector3.zero;
+        aimTarget.parent.localPosition = Vector3.zero;
         aimTarget.localPosition = new Vector3(direction.x, direction.y, 1);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(aimTarget.localPosition), Mathf.Deg2Rad * lookSpeed);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(aimTarget.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
     }
 
     public void Lean(Vector2 direction)
     {
         Vector3 targetEulerAngles = this.transform.localEulerAngles;
-        this.transform.localEulerAngles = new Vector3(targetEulerAngles.x, targetEulerAngles.y, Mathf.LerpAngle(targetEulerAngles.z, -direction.x * 45, 0.25f));
+        this.transform.localEulerAngles = new Vector3(Mathf.LerpAngle(targetEulerAngles.x, -direction.y * 45, 0.1f), targetEulerAngles.y, Mathf.LerpAngle(targetEulerAngles.z, -direction.x * 45, 0.1f));
     }
 }
