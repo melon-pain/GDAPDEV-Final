@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     EnergySystem energy;
     private float energyMax = 100f;
     private Bar energyBar;
+    private float energyRechargeRate = 1.0f;
 
     ManaSystem mana;
     private float manaMax = 100f;
@@ -24,6 +25,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!energy.IsEnergyBroken())
+        {
+            energy.Recharge(energyRechargeRate * Time.deltaTime);
+        }
         if(Input.GetKeyDown(KeyCode.T))
         {
             if(energy.IsEnergyBroken())
@@ -31,7 +36,6 @@ public class Player : MonoBehaviour
                 Die();
             }
             energy.Damage(10f);
-            energyBar.ChangeFill(energy.GetEnergyPercent());
             Debug.Log("Energy: " + energy.GetEnergy());
             Debug.Log("Energy Percent: " + energy.GetEnergyPercent());
         }
@@ -41,14 +45,25 @@ public class Player : MonoBehaviour
             if(mana.GetMana() > 0)
             {
                 mana.Consume(15f);
-                manaBar.ChangeFill(mana.GetManaPercent());
                 Debug.Log("Mana: " + mana.GetMana());
                 Debug.Log("Mana Percent: " + mana.GetManaPercent());
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            RechargeMana();
+        }
+        energyBar.ChangeFill(energy.GetEnergyPercent());
+        manaBar.ChangeFill(mana.GetManaPercent());
     }
 
-    void Die()
+    private void RechargeMana()
+    {
+        mana.Recharge(manaMax);
+    }
+
+    private void Die()
     {
         //Display results
     }

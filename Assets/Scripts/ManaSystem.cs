@@ -1,3 +1,4 @@
+using UnityEngine;
 public class ManaSystem
 {
     private float mana;
@@ -19,9 +20,11 @@ public class ManaSystem
         return mana / manaMax;
     }
 
-    public void PassiveRegen(float regenRate)
+    public void Recharge(float amount)
     {
-        mana += regenRate;
+        mana += amount;
+        if (mana > manaMax)
+            mana = manaMax;
     }
 
     public void Consume(float amount)

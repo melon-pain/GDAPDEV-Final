@@ -28,6 +28,13 @@ public class EnergySystem
         return energy / energyMax;
     }
 
+    public void Recharge(float amount)
+    {
+        energy += amount;
+        if (energy > energyMax)
+            energy = energyMax;
+    }
+
     public bool IsEnergyBroken()
     {
         return (energyState == EnergyState.Broken);
