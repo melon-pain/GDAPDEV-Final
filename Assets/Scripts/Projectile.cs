@@ -19,11 +19,13 @@ public class Projectile : MonoBehaviour
         this.transform.localPosition += (this.transform.forward * speed * Time.deltaTime);
     }
 
-    public void Activate(Vector3 position, Vector3 forward)
+    public void Activate(Element newElement, Vector3 position, Vector3 forward)
     {
         StopAllCoroutines();
+        this.element = newElement;
         this.transform.position = position;
         this.transform.forward = forward;
+        this.OnValidate();
         StartCoroutine(Deactivate());
     }
     
