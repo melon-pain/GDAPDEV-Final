@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 8540a170e8d8f4944b0b7e4cae46a269
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Reaver
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d2ee1c9a07f8fba47b7c5825a003e0ce, type: 3}
+  - {fileID: 12800000, guid: 725e1c58ff0be9f48b6b213ab4141e46, type: 3}
+  - {fileID: 12800000, guid: 836a0e51af2cdae49ad83ce115fea1e6, type: 3}
+  - {fileID: 12800000, guid: 93fe912307ee1764c8ed292ce12a5797, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
         {
             energy.Recharge(energyRechargeRate * Time.deltaTime);
         }
+        //Damaged
         if(Input.GetKeyDown(KeyCode.T))
         {
             if(energy.IsEnergyBroken())
@@ -39,18 +40,20 @@ public class Player : MonoBehaviour
             Debug.Log("Energy: " + energy.GetEnergy());
             Debug.Log("Energy Percent: " + energy.GetEnergyPercent());
         }
-
+        //Consumed Mana
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
         }
-
+        //Mana Recharge
         if(Input.GetKeyDown(KeyCode.C))
         {
             RechargeMana();
         }
-        energyBar.ChangeFill(energy.GetEnergyPercent());
-        manaBar.ChangeFill(mana.GetManaPercent());
+        energyBar.UpdateBar(energy.GetEnergyPercent());
+        energyBar.UpdateValue(energy.GetEnergy(), energyMax);
+        manaBar.UpdateBar(mana.GetManaPercent());
+        manaBar.UpdateValue(mana.GetMana(), manaMax);
     }
 
     public void Shoot()
