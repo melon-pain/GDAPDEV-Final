@@ -147,8 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d630f32d54adef846800029890c4564c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementType: 0
-  model: {fileID: 7707072460993387730}
+  element: 0
+  plate: {fileID: 7707072460993387730}
+  materials:
+  - {fileID: 2100000, guid: 9b3877c7d33cb2b4d8a7c0f33b62a1a7, type: 2}
+  - {fileID: 2100000, guid: 545faa0a9fd020840bdd4ad9e0a5544e, type: 2}
+  - {fileID: 2100000, guid: b09117770fbc12c4bb1d60dc4b7f667c, type: 2}
+  - {fileID: 2100000, guid: 67f8cdff5684eb043a47250d466b0475, type: 2}
 --- !u!65 &7050459668261509320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2401,7 +2406,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 9b3877c7d33cb2b4d8a7c0f33b62a1a7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
