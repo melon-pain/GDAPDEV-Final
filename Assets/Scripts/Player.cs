@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    EnergySystem energy;
+    public EnergySystem energy;
     private float energyMax = 100f;
     private Bar energyBar;
     private float energyRechargeRate = 1.0f;
 
-    ManaSystem mana;
+    public ManaSystem mana;
     private float manaMax = 100f;
     private Bar manaBar;
 
@@ -40,11 +40,6 @@ public class Player : MonoBehaviour
             Debug.Log("Energy: " + energy.GetEnergy());
             Debug.Log("Energy Percent: " + energy.GetEnergyPercent());
         }
-        //Consumed Mana
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Shoot();
-        }
         //Mana Recharge
         if(Input.GetKeyDown(KeyCode.C))
         {
@@ -54,14 +49,6 @@ public class Player : MonoBehaviour
         energyBar.UpdateValue(energy.GetEnergy(), energyMax);
         manaBar.UpdateBar(mana.GetManaPercent());
         manaBar.UpdateValue(mana.GetMana(), manaMax);
-    }
-
-    public void Shoot()
-    {
-        if (mana.GetMana() > 0)
-        {
-            mana.Consume(15f);
-        }
     }
 
     public void RechargeMana()
