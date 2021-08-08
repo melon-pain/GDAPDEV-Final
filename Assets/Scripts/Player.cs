@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -32,13 +33,7 @@ public class Player : MonoBehaviour
         //Damaged
         if(Input.GetKeyDown(KeyCode.T))
         {
-            if(energy.IsEnergyBroken())
-            {
-                Die();
-            }
-            energy.Damage(10f);
-            Debug.Log("Energy: " + energy.GetEnergy());
-            Debug.Log("Energy Percent: " + energy.GetEnergyPercent());
+            GetDamage();
         }
         //Mana Recharge
         if(Input.GetKeyDown(KeyCode.C))
@@ -60,9 +55,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void GetDamage()
+    {
+        if (energy.IsEnergyBroken())
+        {
+            Die();
+            return;
+        }
+        energy.Damage(10f);
+        if(energy.IsEnergyBroken())
+        {
+            GameObject fatalText = GameObject.Find("Fatal Text");
+            if(fatalText != null)
+                fatalText.GetComponent<Text>().enabled = true;
+        }
+    }
+
     private void Die()
     {
         //Display results
+        Debug.Log("Player Dead!");
     }
 
 }
