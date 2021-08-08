@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Element")]
+    [SerializeField] private Element element = Element.Fire;
+
     EnergySystem energy;
     private float energyMax = 100f;
     private Bar energyBar;
@@ -76,6 +79,11 @@ public class Player : MonoBehaviour
     private void Die()
     {
         //Display results
+    }
+
+    public void ChangeElement(Element newElement)
+    {
+        this.element = newElement;
     }
 
 }
