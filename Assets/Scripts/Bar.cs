@@ -24,7 +24,7 @@ public class Bar : MonoBehaviour
     {
         if(valueText != null)
         {
-            valueText.text = $"{value}/{maxValue}";
+            valueText.text = $"{(int)value}/{(int)maxValue}";
         }
     }
 }
