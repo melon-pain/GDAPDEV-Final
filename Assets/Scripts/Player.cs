@@ -42,12 +42,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(mana.GetMana() > 0)
-            {
-                mana.Consume(15f);
-                Debug.Log("Mana: " + mana.GetMana());
-                Debug.Log("Mana Percent: " + mana.GetManaPercent());
-            }
+            Shoot();
         }
 
         if(Input.GetKeyDown(KeyCode.C))
@@ -58,9 +53,21 @@ public class Player : MonoBehaviour
         manaBar.ChangeFill(mana.GetManaPercent());
     }
 
-    private void RechargeMana()
+    public void Shoot()
     {
-        mana.Recharge(manaMax);
+        if (mana.GetMana() > 0)
+        {
+            mana.Consume(15f);
+        }
+    }
+
+    public void RechargeMana()
+    {
+        if(mana.GetMana() < manaMax)
+        {
+            mana.Recharge(manaMax);
+            Debug.Log("Mana recharged.");
+        }
     }
 
     private void Die()
