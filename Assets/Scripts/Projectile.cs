@@ -46,4 +46,9 @@ public class Projectile : MonoBehaviour
     {
         this.GetComponent<MeshRenderer>().material = materials[(int)element];
     }
+
+    public Element GetElement()
+    {
+        return element;
+    }
 }

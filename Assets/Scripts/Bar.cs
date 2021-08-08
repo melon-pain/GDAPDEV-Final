@@ -7,6 +7,7 @@ public class Bar : MonoBehaviour
 {
     private Image bar;
     private Text valueText;
+    [SerializeField] private float lerpSpeed = 6f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,14 +18,14 @@ public class Bar : MonoBehaviour
 
     public void UpdateBar(float fillAmount)
     {
-        bar.fillAmount = fillAmount;
+        bar.fillAmount = Mathf.Lerp(bar.fillAmount, fillAmount, Time.deltaTime * lerpSpeed);
     }
 
     public void UpdateValue(float value, float maxValue)
     {
         if(valueText != null)
         {
-            valueText.text = $"{value}/{maxValue}";
+            valueText.text = $"{(int)value}/{(int)maxValue}";
         }
     }
 }
