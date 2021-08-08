@@ -31,6 +31,11 @@ public class RegularTypeOne : MonoBehaviour
     void Update()
     {
         model.transform.Rotate(new Vector3(0f, rotationSpeed, 0f) * Time.deltaTime);
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            DamageTaken(20f);
+        }
+        energyBar.UpdateBar(energy.GetEnergyPercent());
     }
 
     private void OnDestroy()
@@ -38,17 +43,16 @@ public class RegularTypeOne : MonoBehaviour
         //Should play animation
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        //Place here the specific type of element projectile
         DamageTaken(20f);
     }
 
     private void DamageTaken(float amount)
     {
         energy.Damage(amount);
-        energyBar.UpdateBar(energy.GetEnergyPercent());
-        if(energy.GetEnergy() < 0)
+
+        if(energy.GetEnergy() <= 0)
         {
             //Die
             Destroy(this.gameObject);
