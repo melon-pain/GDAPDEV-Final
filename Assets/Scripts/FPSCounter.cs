@@ -5,12 +5,13 @@ using UnityEngine.UI;
 public class FPSCounter : MonoBehaviour
 {
     private Text text;
+
     // Start is called before the first frame update
     private void Start()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 30;
         text = this.GetComponent<Text>();
-        InvokeRepeating("FPSCount", 1, 1);
+        InvokeRepeating("FPSCount", 1.0f, 0.5f);
     }
 
     private void FPSCount()
