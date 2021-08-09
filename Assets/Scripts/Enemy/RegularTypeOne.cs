@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RegularTypeOne : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class RegularTypeOne : MonoBehaviour
     [SerializeField] private Element element;
     [SerializeField] private GameObject plate;
     [SerializeField] private List<Material> materials = new List<Material>();
+
+    public UnityEvent OnDeath;
+
     private float rotationSpeed;
     // Start is called before the first frame update
     void Start()
@@ -56,6 +60,7 @@ public class RegularTypeOne : MonoBehaviour
         if(energy.GetEnergy() <= 0)
         {
             //Die
+            OnDeath.Invoke();
             Destroy(this.gameObject);
         }
     }

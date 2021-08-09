@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
     {
         StopAllCoroutines();
         this.element = newElement;
-        this.transform.position = position;
+        this.transform.localPosition = position;
         this.transform.forward = forward;
         this.OnValidate();
         StartCoroutine(Deactivate());
@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
     {
         StopAllCoroutines();
         this.gameObject.SetActive(false);
-        Debug.Log("Projectile collided!");
+        Debug.Log($"Projectile collided with {collision.collider.name}!");
     }
 
     private void OnValidate()
