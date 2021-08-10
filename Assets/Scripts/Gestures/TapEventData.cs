@@ -9,7 +9,7 @@ public class TapEventData : System.EventArgs
     public GameObject gameObject { get; private set; } = null;
     public TapEventData (Vector2 pos, GameObject obj = null)
     {
-        position = pos;
-        gameObject = obj;
+        this.position = pos;
+        this.gameObject = obj;
     }
 }

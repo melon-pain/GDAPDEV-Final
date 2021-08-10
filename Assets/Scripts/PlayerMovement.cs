@@ -5,11 +5,18 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Input")]
     [SerializeField] private Joystick joystick;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 10.0f;
+    [SerializeField] private float rollMoveSpeed = 25.0f;
+    [SerializeField] private float rollTurnSpeed = 4.0f;
     [SerializeField] private Vector2 limits = new Vector2(5, 3);
+
+    public bool isRolling { get; private set; } = false;
+    private Vector3 rollDirection = Vector3.zero;
+    private float rollTime = 0.0f;
 
     // Start is called before the first frame update
     private void Start()
@@ -20,10 +27,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Vector2 dir = joystick.direction;
-        Move(dir);
-        //Look(dir);
-        Lean(dir);
+        if (isRolling)
+        {
+            rollTime += Time.deltaTime * rollTurnSpeed;
+            Roll();
+            if (rollTime >= 1.0f)
+            {
+                rollTime = 0.0f;
+                isRolling = false;
+            }
+        }
+        else
+        {
+            Vector2 dir = joystick.direction;
+            Move(dir);
+            Lean(dir);
+        }
+       
     }
 
     public void Move(Vector2 direction)
@@ -54,5 +74,21 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 targetEulerAngles = this.transform.localEulerAngles;
         this.transform.localEulerAngles = new Vector3(Mathf.LerpAngle(targetEulerAngles.x, -direction.y * 45, 0.1f), targetEulerAngles.y, Mathf.LerpAngle(targetEulerAngles.z, -direction.x * 45, 0.1f));
+    }
+
+    public void BarrelRoll(SwipeEventData swipeEventData)
+    {
+        if (swipeEventData.direction == SwipeDirection.Left || swipeEventData.direction == SwipeDirection.Right)
+        {
+            isRolling = true;
+            rollDirection = swipeEventData.swipeVector.normalized;
+        }
+    }
+
+    private void Roll()
+    {
+        this.transform.localEulerAngles = Vector3.Lerp(Vector3.zero, Vector3.forward * 360.0f * Mathf.Sign(-rollDirection.x), rollTime);
+        this.transform.localPosition += rollDirection * rollMoveSpeed * Time.deltaTime;
+        this.ClampPosition();
     }
 }

@@ -44,7 +44,6 @@ public class PlayerShooting : MonoBehaviour
 
         Vector3 pos = this.transform.localPosition + (Vector3.forward * distance);
         Vector3 dir = target ? (target.transform.localPosition - pos).normalized : Vector3.forward;
-        Debug.Log($"X: {dir.x} " + $"Y: {dir.y} " + $"Z: {dir.z}");
         projectile.Activate(this.element, pos, dir);
         player.mana.Consume(manaCost);
         ticks = 0.0f;
@@ -62,6 +61,8 @@ public class PlayerShooting : MonoBehaviour
             this.target = tapEventData.gameObject;
             crosshair.transform.parent = target.transform;
             crosshair.transform.localPosition = Vector3.zero;
+
+            Debug.Log("Lock on!");
         }
         else
         {
@@ -73,7 +74,7 @@ public class PlayerShooting : MonoBehaviour
     {
         this.target = null;
         crosshair.transform.parent = this.transform;
-        crosshair.transform.localPosition = Vector3.zero;
+        crosshair.transform.localPosition = Vector3.forward;
     }
 
     public void SetFiring(bool value)

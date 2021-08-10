@@ -43,12 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f21e2106e47fbb46bea7063544c9286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
+  cullingMask:
     serializedVersion: 2
-    m_Bits: 146
+    m_Bits: 0
   tapProperty:
     tapTime: 0.7
     tapDistance: 0.1
   OnTap:
+    m_PersistentCalls:
+      m_Calls: []
+  swipeProperty:
+    minSwipeDistance: 2
+    swipeTime: 0.7
+  OnSwipe:
     m_PersistentCalls:
       m_Calls: []

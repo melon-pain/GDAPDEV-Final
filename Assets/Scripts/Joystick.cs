@@ -28,16 +28,6 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             direction = thumb_rect.anchoredPosition / movementRange;
         }
     }
-
-    public float GetAxis(string axisName)
-    {
-        switch (axisName)
-        {
-            case "Horizontal": return direction.x; break;
-            case "Vertical": return direction.y; break;
-            default: return 0.0f;
-        }
-    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDragging = true;
