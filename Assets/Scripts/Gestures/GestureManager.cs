@@ -6,9 +6,16 @@ public class GestureManager : MonoBehaviour
     public static GestureManager instance = null;
     private Touch finger_1;
 
-    [SerializeField] private LayerMask layerMask;
+    [Header("Layers"), Tooltip("Which layers to test for gestures")]
+    [SerializeField] private LayerMask cullingMask;
+
+    [Header("Tap")]
     [SerializeField] private TapProperty tapProperty;
-    public UnityEvent<TapEventData> OnTap;
+    [Space(4.0f)] public UnityEvent<TapEventData> OnTap;
+
+    [Header("Swipe")]
+    [SerializeField] private SwipeProperty swipeProperty;
+    [Space(4.0f)] public UnityEvent<SwipeEventData> OnSwipe;
 
     private Vector2 startPoint = Vector2.zero;
     private Vector2 endPoint = Vector2.zero;
@@ -46,6 +53,10 @@ public class GestureManager : MonoBehaviour
                     {
                         Tap(finger_1.position);
                     }
+                    else if (gestureTime <= swipeProperty.GetSwipeTime() && Vector2.Distance(startPoint, endPoint) >= (Screen.dpi * swipeProperty.GetMinSwipeDistance()))
+                    {
+                        Swipe();
+                    }
                     break;
                 default:
                     gestureTime += Time.deltaTime;
@@ -59,14 +70,14 @@ public class GestureManager : MonoBehaviour
         //Check for event listeners
         if (OnTap.GetPersistentEventCount() > 0)
         {
-            //Let UI consume input  
+            //Let UI consume 
             if (eventSystem.currentSelectedGameObject)
                 return;
             GameObject hitObj = null;
             Ray r = Camera.main.ScreenPointToRay(pos);
             RaycastHit hit = new RaycastHit();
 
-            if (Physics.Raycast(r, out hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(r, out hit, Mathf.Infinity, cullingMask))
             {
                 hitObj = hit.collider.gameObject;
                 Debug.Log(hitObj.name);
@@ -74,6 +85,49 @@ public class GestureManager : MonoBehaviour
 
             TapEventData tapEventData = new TapEventData(pos, hitObj);
             OnTap.Invoke(tapEventData);
+        }
+    }
+
+    private void Swipe()
+    {
+        //Check for event listeners
+        if (OnSwipe.GetPersistentEventCount() > 0)
+        {
+            Vector2 dir = endPoint - startPoint;
+
+            //Let UI consume 
+            if (eventSystem.currentSelectedGameObject)
+                return;
+
+            GameObject hitObj = null;
+            Ray r = Camera.main.ScreenPointToRay(startPoint);
+            RaycastHit hit = new RaycastHit();
+
+            if (Physics.Raycast(r, out hit, Mathf.Infinity, cullingMask))
+            {
+                hitObj = hit.collider.gameObject;
+                Debug.Log(hitObj.name);
+            }
+
+            SwipeDirection swipeDir = SwipeDirection.Right;
+
+            if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+            {
+                if (dir.x > 0.0f)
+                    swipeDir = SwipeDirection.Right;
+                else
+                    swipeDir = SwipeDirection.Left;
+            }
+            else
+            {
+                if (dir.y > 0.0f)
+                    swipeDir = SwipeDirection.Up;
+                else
+                    swipeDir = SwipeDirection.Down;
+            }
+
+            SwipeEventData swipeEventData = new SwipeEventData(startPoint, swipeDir, dir, hitObj);
+            OnSwipe.Invoke(swipeEventData);
         }
     }
 }
