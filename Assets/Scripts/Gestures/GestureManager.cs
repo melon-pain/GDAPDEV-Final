@@ -17,6 +17,10 @@ public class GestureManager : MonoBehaviour
     [SerializeField] private SwipeProperty swipeProperty;
     [Space(4.0f)] public UnityEvent<SwipeEventData> OnSwipe;
 
+    [Header("Drag")]
+    [SerializeField] private DragProperty dragProperty;
+    [Space(4.0f)] public UnityEvent<DragEventData> OnDrag;
+
     private Vector2 startPoint = Vector2.zero;
     private Vector2 endPoint = Vector2.zero;
     private float gestureTime = 0.0f;
@@ -62,6 +66,11 @@ public class GestureManager : MonoBehaviour
                     gestureTime += Time.deltaTime;
                     break;
             }
+            if (gestureTime >= dragProperty.dragBufferTime)
+            {
+                Drag();
+            }
+
         }
     }
 
@@ -130,4 +139,35 @@ public class GestureManager : MonoBehaviour
             OnSwipe.Invoke(swipeEventData);
         }
     }
+
+    private void Drag()
+    {
+        //Debug.Log($"Drag: {finger_1.position}");
+        Ray r = Camera.main.ScreenPointToRay(finger_1.position);
+        RaycastHit hit = new RaycastHit();
+        GameObject hitObj = null;
+
+        if (Physics.Raycast(r, out hit, Mathf.Infinity, cullingMask))
+        {
+            hitObj = hit.collider.gameObject;
+            Debug.Log("Drag hit");
+        }
+
+        DragEventData dragEventData = new DragEventData(finger_1, hitObj);
+        if (OnDrag != null)
+        {
+            OnDrag.Invoke(dragEventData);
+            Debug.Log("Invoking");
+        }
+        /*if (hitObj != null)
+        {
+            //IDrag drag = hitObj.GetComponent<IDrag>();
+            if (drag != null)
+            {
+                drag.OnDrag(dragEventData);
+            }
+        }*/
+
+    }
+
 }
