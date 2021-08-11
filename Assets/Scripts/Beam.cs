@@ -9,8 +9,8 @@ public class Beam : MonoBehaviour
     [SerializeField] private List<Color> startColors;
     [SerializeField] private List<Color> endColors;
     
-    [SerializeField] private Transform beamStartPos;
-    [SerializeField] private Transform beamEndPos;
+    [SerializeField] private Transform beamStart;
+    [SerializeField] private Transform beamEnd;
     private LineRenderer lineRend;
 
     Ray ray;
@@ -23,33 +23,33 @@ public class Beam : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            beamEndPos.localPosition -= new Vector3(Time.deltaTime * 50f, 0f, 0f);
+            beamEnd.localPosition -= new Vector3(Time.deltaTime * 50f, 0f, 0f);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            beamEndPos.localPosition += new Vector3(Time.deltaTime * 50f, 0f, 0f);
+            beamEnd.localPosition += new Vector3(Time.deltaTime * 50f, 0f, 0f);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            beamEndPos.localPosition += new Vector3(0f, Time.deltaTime * 50f, 0f);
+            beamEnd.localPosition += new Vector3(0f, Time.deltaTime * 50f, 0f);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            beamEndPos.localPosition -= new Vector3(0f, Time.deltaTime * 50f, 0f);
+            beamEnd.localPosition -= new Vector3(0f, Time.deltaTime * 50f, 0f);
         }
 
-        if(Physics.Linecast(beamStartPos.position, beamEndPos.position, out hit))
+        if(Physics.Linecast(beamStart.position, beamEnd.position, out hit))
         {
             print($"Line hit: {hit.collider.gameObject.name}");
         }
 
-        Debug.DrawLine(beamStartPos.position, beamEndPos.position, Color.green);
-        lineRend.SetPosition(0, beamStartPos.localPosition);
-        lineRend.SetPosition(1, beamEndPos.localPosition);
+        Debug.DrawLine(beamStart.position, beamEnd.position, Color.green);
+        lineRend.SetPosition(0, beamStart.localPosition);
+        lineRend.SetPosition(1, beamEnd.localPosition);
     }
 
     private void OnValidate()
@@ -60,6 +60,16 @@ public class Beam : MonoBehaviour
             this.gameObject.GetComponent<LineRenderer>().startColor = startColors[(int)element];
             this.gameObject.GetComponent<LineRenderer>().endColor = endColors[(int)element];
         }
+    }
+
+    public void SetBeamStartPosition(Vector3 pos)
+    {
+        beamStart.position = pos;
+    }
+
+    public void SetBeamEndPosition(Vector3 pos)
+    {
+        beamEnd.position = pos;
     }
 
 }

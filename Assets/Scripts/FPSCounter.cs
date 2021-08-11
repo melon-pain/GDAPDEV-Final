@@ -9,7 +9,7 @@ public class FPSCounter : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 60;
         text = this.GetComponent<Text>();
         InvokeRepeating("FPSCount", 1.0f, 0.5f);
     }
