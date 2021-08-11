@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Projectile : MonoBehaviour
 {
@@ -25,21 +26,24 @@ public class Projectile : MonoBehaviour
         this.element = newElement;
         this.transform.localPosition = position;
         this.transform.forward = forward;
-        //this.OnValidate();
+        this.OnValidate();
         StartCoroutine(Deactivate());
     }
     
     private IEnumerator Deactivate()
     {
         yield return new WaitForSeconds(3.0f);
+        this.GetComponent<MeshRenderer>().enabled = true;
         this.gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         StopAllCoroutines();
-        this.gameObject.SetActive(false);
-        Debug.Log($"Projectile collided with {collision.collider.name}!");
+        this.GetComponent<VisualEffect>().SendEvent("OnHit");
+        this.GetComponent<MeshRenderer>().enabled = false;
+        Deactivate();
+        //Debug.Log($"Projectile collided with {collision.collider.name}!");
     }
 
     private void OnValidate()

@@ -32,6 +32,8 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         isDragging = true;
         ticks = 0.0f;
+
+        EventSystem.current.SetSelectedGameObject(this.gameObject, eventData);
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -42,6 +44,8 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         isDragging = false;
+
+        EventSystem.current.SetSelectedGameObject(null, eventData);
         //thumb_rect.anchoredPosition = Vector2.zero;
         //direction = Vector2.zero;
     }

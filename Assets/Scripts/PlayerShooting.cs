@@ -7,12 +7,15 @@ public class PlayerShooting : MonoBehaviour
     [Header("Projectiles")]
     [SerializeField] private Element element = Element.Fire;
     [SerializeField] private ObjectPool pool;
-    [SerializeField] private GameObject beam;
-    [SerializeField] private GameObject beamTarget;
     [SerializeField] private float fireRate = 5.0f;
     [SerializeField] private float manaCost = 1.0f;
+
+    [Header("Beam")]
+    [SerializeField] private GameObject beam;
+    [SerializeField] private GameObject beamTarget;
     [SerializeField] private float beamCooldown = 5.0f;
     [SerializeField] private float beamFireDuration = 3.0f;
+
     [Header("Crosshair")]
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject target;
@@ -49,10 +52,13 @@ public class PlayerShooting : MonoBehaviour
     {
         if (ticks < 1.0f / fireRate || player.mana.GetMana() <= 0f)
             return;
-        Projectile projectile = pool.GetObjectFromPool().GetComponent<Projectile>();
 
-        Vector3 pos = this.transform.localPosition + (Vector3.forward * distance);
-        Vector3 dir = target ? (target.transform.localPosition - pos).normalized : Vector3.forward;
+        Vector3 forward = Quaternion.Euler(Quaternion.AngleAxis(180.0f, Vector3.right) * this.transform.localEulerAngles) * Vector3.forward;
+        //forward.x *= -1;
+        Vector3 pos = this.transform.localPosition + (forward * distance);
+        Vector3 dir = target ? (target.transform.localPosition - pos).normalized : forward;
+
+        Projectile projectile = pool.GetObjectFromPool().GetComponent<Projectile>();
         projectile.Activate(this.element, pos, dir);
         player.mana.Consume(manaCost);
         ticks = 0.0f;
@@ -68,10 +74,14 @@ public class PlayerShooting : MonoBehaviour
             StartCoroutine(StopFiringBeam());
             StartCoroutine(BeamCooldownTimer());
         }
+
         Ray r = Camera.main.ScreenPointToRay(dragEventData.TargetFinger.position);
         //beamTarget.transform.position = new Vector3(dragEventData.TargetFinger.position.x, dragEventData.TargetFinger.position.y, 5.0f);
-        //beamTarget.transform.position = Camera.main.ScreenToWorldPoint(dragEventData.TargetFinger.position) + Camera.main.transform.forward * 10.0f;
+
+        //beam.GetComponent<Beam>().SetBeamStartPosition(r.origin);
+        beam.GetComponent<Beam>().SetBeamEndPosition(r.origin + r.direction * 5.0f);
         //beamTarget.transform.position = Vector3.ProjectOnPlane(beamTarget.transform.position, Vector3.forward);
+
     }
 
     public void ChangeElement(Element newElement)
@@ -81,7 +91,7 @@ public class PlayerShooting : MonoBehaviour
 
     public void LockOn(TapEventData tapEventData)
     {
-        if (tapEventData.gameObject)
+        if (tapEventData.gameObject && tapEventData.gameObject.tag == "Enemy")
         {
             this.target = tapEventData.gameObject;
             crosshair.transform.parent = target.transform;

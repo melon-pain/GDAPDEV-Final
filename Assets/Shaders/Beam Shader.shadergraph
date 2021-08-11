@@ -137,6 +137,9 @@
         },
         {
             "m_Id": "eeab00ccc5104e309e18842c9786236c"
+        },
+        {
+            "m_Id": "4ad80f1460904fb0b7db7dded8d604e6"
         }
     ],
     "m_GroupDatas": [],
@@ -689,6 +692,9 @@
             },
             {
                 "m_Id": "5ce6cab28bf241dda8a39a9fb2ab5673"
+            },
+            {
+                "m_Id": "4ad80f1460904fb0b7db7dded8d604e6"
             }
         ]
     },
@@ -1844,6 +1850,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "44d8e53738da4251850b19bf2047818c",
+    "m_Id": 0,
+    "m_DisplayName": "Alpha Clip Threshold",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "AlphaClipThreshold",
+    "m_StageCapability": 2,
+    "m_Value": 0.25,
+    "m_DefaultValue": 0.5,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.LerpNode",
     "m_ObjectId": "46e50b450a2f4fbd88002f678cb78e15",
     "m_Group": {
@@ -1938,6 +1959,39 @@
     },
     "m_Labels": [],
     "m_Space": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
+    "m_ObjectId": "4ad80f1460904fb0b7db7dded8d604e6",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "SurfaceDescription.AlphaClipThreshold",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "44d8e53738da4251850b19bf2047818c"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedDescriptor": "SurfaceDescription.AlphaClipThreshold"
 }
 
 {
@@ -3907,10 +3961,10 @@
     "m_ActiveSubTarget": {
         "m_Id": "2d63a5a13a43459988a198a457e0ae94"
     },
-    "m_SurfaceType": 1,
+    "m_SurfaceType": 0,
     "m_AlphaMode": 2,
     "m_TwoSided": false,
-    "m_AlphaClip": false,
+    "m_AlphaClip": true,
     "m_CustomEditorGUI": ""
 }
 

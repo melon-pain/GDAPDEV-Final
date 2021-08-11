@@ -199,8 +199,8 @@ MonoBehaviour:
   - {r: 0, g: 0.028357267, b: 1, a: 1}
   - {r: 0.4464631, g: 0, b: 1, a: 1}
   - {r: 0, g: 0.5382376, b: 1, a: 1}
-  beamStartPos: {fileID: 7587962314887266594}
-  beamEndPos: {fileID: 8881363989290422477}
+  beamStart: {fileID: 0}
+  beamEnd: {fileID: 0}
 --- !u!1 &5520774057811191267
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,8 +41,13 @@ public class GestureManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
         if (Input.touchCount > 0)
         {
+            //Consume UI
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.alreadySelecting)
+                return;
+
             finger_1 = Input.GetTouch(0);
 
             switch (finger_1.phase)
@@ -62,6 +67,9 @@ public class GestureManager : MonoBehaviour
                         Swipe();
                     }
                     break;
+                case TouchPhase.Canceled:
+                    gestureTime = 0.0f;
+                    break;
                 default:
                     gestureTime += Time.deltaTime;
                     break;
@@ -79,9 +87,6 @@ public class GestureManager : MonoBehaviour
         //Check for event listeners
         if (OnTap.GetPersistentEventCount() > 0)
         {
-            //Let UI consume 
-            if (eventSystem.currentSelectedGameObject)
-                return;
             GameObject hitObj = null;
             Ray r = Camera.main.ScreenPointToRay(pos);
             RaycastHit hit = new RaycastHit();
@@ -103,10 +108,6 @@ public class GestureManager : MonoBehaviour
         if (OnSwipe.GetPersistentEventCount() > 0)
         {
             Vector2 dir = endPoint - startPoint;
-
-            //Let UI consume 
-            if (eventSystem.currentSelectedGameObject)
-                return;
 
             GameObject hitObj = null;
             Ray r = Camera.main.ScreenPointToRay(startPoint);
@@ -142,7 +143,6 @@ public class GestureManager : MonoBehaviour
 
     private void Drag()
     {
-        //Debug.Log($"Drag: {finger_1.position}");
         Ray r = Camera.main.ScreenPointToRay(finger_1.position);
         RaycastHit hit = new RaycastHit();
         GameObject hitObj = null;
@@ -157,16 +157,8 @@ public class GestureManager : MonoBehaviour
         if (OnDrag != null)
         {
             OnDrag.Invoke(dragEventData);
-            Debug.Log("Invoking");
+            //Debug.Log("Invoking");
         }
-        /*if (hitObj != null)
-        {
-            //IDrag drag = hitObj.GetComponent<IDrag>();
-            if (drag != null)
-            {
-                drag.OnDrag(dragEventData);
-            }
-        }*/
 
     }
 
