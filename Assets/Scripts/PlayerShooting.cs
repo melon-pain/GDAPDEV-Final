@@ -53,10 +53,13 @@ public class PlayerShooting : MonoBehaviour
         if (ticks < 1.0f / fireRate || player.mana.GetMana() <= 0f)
             return;
 
-        Vector3 forward = Quaternion.Euler(Quaternion.AngleAxis(180.0f, Vector3.right) * this.transform.localEulerAngles) * Vector3.forward;
-        //forward.x *= -1;
-        Vector3 pos = this.transform.localPosition + (forward * distance);
-        Vector3 dir = target ? (target.transform.localPosition - pos).normalized : forward;
+        //Vector3 forward = Quaternion.Euler(Quaternion.AngleAxis(180.0f, Vector3.right) * this.transform.localEulerAngles) * Vector3.forward;
+        //Vector3 pos = this.transform.localPosition + (forward * distance);
+        //Vector3 dir = target ? (target.transform.localPosition - pos).normalized : forward;
+
+        Vector3 forward = this.transform.forward;
+        Vector3 pos = this.transform.position + (forward * distance);
+        Vector3 dir = target ? (target.transform.position - pos).normalized : forward;
 
         Projectile projectile = pool.GetObjectFromPool().GetComponent<Projectile>();
         projectile.Activate(this.element, pos, dir);

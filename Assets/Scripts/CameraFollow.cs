@@ -9,12 +9,6 @@ public class CameraFollow : MonoBehaviour
 
     [Space]
     [SerializeField] private Vector3 offset = Vector3.zero;
-    
-    [Space]
-    [SerializeField] private Vector2 limits = new Vector2(5, 3);
-    
-    [Space]
-
     [Range(0, 1)]
     [SerializeField] private float smoothTime = 0.1f;
 

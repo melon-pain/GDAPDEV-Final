@@ -9,6 +9,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Element element = Element.Electric;
     [SerializeField] private List<Material> materials = new List<Material>();
 
+    private Vector3 direction = Vector3.zero;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -17,15 +19,16 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        this.transform.localPosition += (this.transform.forward * speed * Time.deltaTime);
+        //this.transform.localPosition += (direction * speed * Time.deltaTime);
+        this.transform.position += this.transform.forward * speed * Time.deltaTime;
     }
 
-    public void Activate(Element newElement, Vector3 position, Vector3 forward)
+    public void Activate(Element newElement, Vector3 position, Vector3 dir)
     {
         StopAllCoroutines();
         this.element = newElement;
-        this.transform.localPosition = position;
-        this.transform.forward = forward;
+        this.transform.position = position;
+        this.transform.forward = dir;
         this.OnValidate();
         StartCoroutine(Deactivate());
     }
@@ -42,7 +45,7 @@ public class Projectile : MonoBehaviour
         StopAllCoroutines();
         this.GetComponent<VisualEffect>().SendEvent("OnHit");
         this.GetComponent<MeshRenderer>().enabled = false;
-        Deactivate();
+        StartCoroutine(Deactivate());
         //Debug.Log($"Projectile collided with {collision.collider.name}!");
     }
 
