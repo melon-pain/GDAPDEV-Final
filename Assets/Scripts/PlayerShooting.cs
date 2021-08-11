@@ -82,7 +82,7 @@ public class PlayerShooting : MonoBehaviour
         //beamTarget.transform.position = new Vector3(dragEventData.TargetFinger.position.x, dragEventData.TargetFinger.position.y, 5.0f);
 
         //beam.GetComponent<Beam>().SetBeamStartPosition(r.origin);
-        beam.GetComponent<Beam>().SetBeamEndPosition(r.origin + r.direction * 5.0f);
+        beam.GetComponent<Beam>().SetBeamEndPosition(r.origin + r.direction * 12.0f);
         //beamTarget.transform.position = Vector3.ProjectOnPlane(beamTarget.transform.position, Vector3.forward);
 
     }
