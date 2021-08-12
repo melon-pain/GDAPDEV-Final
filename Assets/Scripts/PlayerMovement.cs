@@ -10,9 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 10.0f;
-    [SerializeField] private float rollMoveSpeed = 25.0f;
+    [SerializeField] private float rollMoveSpeed = 20.0f;
     [SerializeField] private float rollTurnSpeed = 4.0f;
-    [SerializeField] private Vector2 limits = new Vector2(5, 3);
     [SerializeField] private float moveLimit = 10.0f;
 
     public bool isRolling { get; private set; } = false;
@@ -22,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        limits *= 2.0f;
     }
 
     // Update is called once per frame
@@ -39,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Vector2 dir = joystick.direction;
+            Vector2 dir = joystick.axis;
             Move(dir);
             Lean(dir);
         }

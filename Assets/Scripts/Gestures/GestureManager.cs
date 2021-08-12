@@ -26,6 +26,8 @@ public class GestureManager : MonoBehaviour
     private Vector2 endPoint = Vector2.zero;
     private float gestureTime = 0.0f;
 
+    private bool wasTouchingUI = false;
+
     private EventSystem eventSystem;
 
     // Start is called before the first frame update
@@ -61,9 +63,18 @@ public class GestureManager : MonoBehaviour
     private void OneFingerGesture()
     {
         //Consume UI
-        if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) ||
-            EventSystem.current.alreadySelecting)
+        if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.currentSelectedGameObject)
+        {
+            Debug.LogError("Touching UI");
+            wasTouchingUI = true;
             return;
+        }
+
+        else if (wasTouchingUI)
+        {
+            wasTouchingUI = false;
+            return;
+        }
 
         finger_1 = Input.GetTouch(0);
 
@@ -72,6 +83,7 @@ public class GestureManager : MonoBehaviour
         switch (finger_1.phase)
         {
             case TouchPhase.Began:
+                Debug.LogWarning("Touch start");
                 startPoint = finger_1.position;
                 gestureTime = 0.0f;
                 break;
@@ -83,6 +95,8 @@ public class GestureManager : MonoBehaviour
                 }
                 else if (gestureTime <= swipeProperty.GetSwipeTime() && Vector2.Distance(startPoint, endPoint) >= (Screen.dpi * swipeProperty.GetMinSwipeDistance()))
                 {
+                    Debug.LogWarning($"Start {startPoint}");
+                    Debug.LogWarning($"End {endPoint}");
                     Swipe();
                 }
                 break;
@@ -94,6 +108,7 @@ public class GestureManager : MonoBehaviour
         {
             Drag();
         }
+
     }
 
     private void TwoFingerGesture()

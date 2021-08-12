@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
                 shootInterval = Random.Range(1.0f, 2.0f);
             }
 
-            this.transform.LookAt(player.transform);
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), 0.5f);
         }
     }
 
@@ -82,14 +82,10 @@ public class Enemy : MonoBehaviour
             if (this.HP <= 0.0f)
             {
                 isDead = true;
+                isShooting = false;
                 Deactivate();
             }
         }
-    }
-
-    private void nValidate()
-    {
-        Activate();
     }
 
     private void Activate()
@@ -104,6 +100,7 @@ public class Enemy : MonoBehaviour
 
     private void Deactivate()
     {
+        player.GetComponent<PlayerShooting>().RemoveLockOn();
         this.gameObject.SetActive(false);
     }
 
