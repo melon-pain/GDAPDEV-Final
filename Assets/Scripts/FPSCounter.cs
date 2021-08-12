@@ -16,6 +16,6 @@ public class FPSCounter : MonoBehaviour
 
     private void FPSCount()
     {
-        text.text = $"FPS: {1.0f / Time.unscaledDeltaTime }";
+        text.text = $"FPS: {(int) (1.0f / Time.unscaledDeltaTime) }";
     }
 }
