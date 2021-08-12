@@ -8,7 +8,7 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     [SerializeField] private float movementRange = 50.0f;
     private RectTransform thumb_rect;
-    public Vector2 direction { get; private set; } = Vector2.zero;
+    public Vector2 axis { get; private set; } = Vector2.zero;
     public bool isDragging { get; private set; } = false;
 
     private float ticks = 0.0f;
@@ -25,7 +25,7 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             ticks += Time.deltaTime;
             thumb_rect.anchoredPosition = Vector2.Lerp(thumb_rect.anchoredPosition, Vector2.zero, ticks);
-            direction = thumb_rect.anchoredPosition / movementRange;
+            axis = thumb_rect.anchoredPosition / movementRange;
         }
     }
     public void OnBeginDrag(PointerEventData eventData)
@@ -33,12 +33,12 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         isDragging = true;
         ticks = 0.0f;
 
-        EventSystem.current.SetSelectedGameObject(this.gameObject, eventData);
+        EventSystem.current.SetSelectedGameObject(thumb_rect.gameObject, eventData);
     }
     public void OnDrag(PointerEventData eventData)
     {
         thumb_rect.anchoredPosition = Vector2.ClampMagnitude(thumb_rect.anchoredPosition + eventData.delta, movementRange);
-        direction = thumb_rect.anchoredPosition / movementRange;
+        axis = thumb_rect.anchoredPosition / movementRange;
     }
 
     public void OnEndDrag(PointerEventData eventData)
