@@ -57,6 +57,10 @@ public class Player : MonoBehaviour
 
     public void GetDamage()
     {
+        // Invulnerable while rolling
+        if (this.GetComponent<PlayerMovement>().isRolling)
+            return;
+
         if (energy.IsEnergyBroken())
         {
             Die();
@@ -67,6 +71,26 @@ public class Player : MonoBehaviour
         {
             GameObject fatalText = GameObject.Find("Fatal Text");
             if(fatalText != null)
+                fatalText.GetComponent<Text>().enabled = true;
+        }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        // Invulnerable while rolling
+        if (this.GetComponent<PlayerMovement>().isRolling)
+            return;
+
+        if (energy.IsEnergyBroken())
+        {
+            Die();
+            return;
+        }
+        energy.Damage(amount);
+        if (energy.IsEnergyBroken())
+        {
+            GameObject fatalText = GameObject.Find("Fatal Text");
+            if (fatalText != null)
                 fatalText.GetComponent<Text>().enabled = true;
         }
     }

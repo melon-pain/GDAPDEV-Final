@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 32
+  damage: 20
   element: 0
   materials:
   - {fileID: 2100000, guid: e0f3c4ec16455a847a26ab3cccc31aac, type: 2}
