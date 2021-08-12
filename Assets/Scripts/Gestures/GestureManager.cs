@@ -5,6 +5,7 @@ public class GestureManager : MonoBehaviour
 {
     public static GestureManager instance = null;
     private Touch finger_1;
+    private Touch finger_2;
 
     [Header("Layers"), Tooltip("Which layers to test for gestures")]
     [SerializeField] private LayerMask cullingMask;
@@ -41,45 +42,71 @@ public class GestureManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
-        if (Input.touchCount > 0)
+        int touchCount = Input.touchCount;
+        if (touchCount > 0)
         {
-            //Consume UI
-            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.alreadySelecting)
-                return;
-
-            finger_1 = Input.GetTouch(0);
-
-            switch (finger_1.phase)
+            switch (touchCount)
             {
-                case TouchPhase.Began:
-                    startPoint = finger_1.position;
-                    gestureTime = 0.0f;
+                case 1:
+                    OneFingerGesture();
                     break;
-                case TouchPhase.Ended:
-                    endPoint = finger_1.position;
-                    if (gestureTime <= tapProperty.GetTapTime() && Vector2.Distance(startPoint, endPoint) < (Screen.dpi * tapProperty.GetTapDistance()) )
-                    {
-                        Tap(finger_1.position);
-                    }
-                    else if (gestureTime <= swipeProperty.GetSwipeTime() && Vector2.Distance(startPoint, endPoint) >= (Screen.dpi * swipeProperty.GetMinSwipeDistance()))
-                    {
-                        Swipe();
-                    }
+                case 2:
+                    TwoFingerGesture();
                     break;
-                case TouchPhase.Canceled:
-                    gestureTime = 0.0f;
-                    break;
-                default:
-                    gestureTime += Time.deltaTime;
-                    break;
-            }
-            if (gestureTime >= dragProperty.dragBufferTime)
-            {
-                Drag();
             }
 
         }
+    }
+
+    private void OneFingerGesture()
+    {
+        //Consume UI
+        if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) ||
+            EventSystem.current.alreadySelecting)
+            return;
+
+        finger_1 = Input.GetTouch(0);
+
+        Debug.Log("One finger");
+
+        switch (finger_1.phase)
+        {
+            case TouchPhase.Began:
+                startPoint = finger_1.position;
+                gestureTime = 0.0f;
+                break;
+            case TouchPhase.Ended:
+                endPoint = finger_1.position;
+                if (gestureTime <= tapProperty.GetTapTime() && Vector2.Distance(startPoint, endPoint) < (Screen.dpi * tapProperty.GetTapDistance()))
+                {
+                    Tap(finger_1.position);
+                }
+                else if (gestureTime <= swipeProperty.GetSwipeTime() && Vector2.Distance(startPoint, endPoint) >= (Screen.dpi * swipeProperty.GetMinSwipeDistance()))
+                {
+                    Swipe();
+                }
+                break;
+            default:
+                gestureTime += Time.deltaTime;
+                break;
+        }
+        if (gestureTime >= dragProperty.dragBufferTime)
+        {
+            Drag();
+        }
+    }
+
+    private void TwoFingerGesture()
+    {
+        //Consume UI
+        if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || 
+            EventSystem.current.IsPointerOverGameObject(Input.GetTouch(1).fingerId) || 
+            EventSystem.current.alreadySelecting)
+            return;
+
+        finger_1 = Input.GetTouch(0);
+        finger_2 = Input.GetTouch(1);
+
     }
 
     private void Tap(Vector2 pos)
@@ -138,6 +165,8 @@ public class GestureManager : MonoBehaviour
 
             SwipeEventData swipeEventData = new SwipeEventData(startPoint, swipeDir, dir, hitObj);
             OnSwipe.Invoke(swipeEventData);
+
+            Debug.Log("Swipe");
         }
     }
 

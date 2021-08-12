@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     [Space]
     [SerializeField] private Vector3 offset = Vector3.zero;
     [Range(0, 1)]
-    [SerializeField] private float smoothTime = 0.1f;
+    [SerializeField] private float smoothTime = 0.2f;
 
     private Vector3 velocity = Vector3.zero;
 

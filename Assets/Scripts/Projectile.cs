@@ -6,6 +6,7 @@ using UnityEngine.VFX;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float speed = 100.0f;
+    [SerializeField] private float damage = 20.0f;
     [SerializeField] private Element element = Element.Electric;
     [SerializeField] private List<Material> materials = new List<Material>();
 
@@ -42,11 +43,17 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        StopAllCoroutines();
         this.GetComponent<VisualEffect>().SendEvent("OnHit");
         this.GetComponent<MeshRenderer>().enabled = false;
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.TakeDamage(this.element, this.damage);
+        }
+
+        StopAllCoroutines();
         StartCoroutine(Deactivate());
-        //Debug.Log($"Projectile collided with {collision.collider.name}!");
     }
 
     private void OnValidate()
@@ -57,5 +64,10 @@ public class Projectile : MonoBehaviour
     public Element GetElement()
     {
         return element;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 }

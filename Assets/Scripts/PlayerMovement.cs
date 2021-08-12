@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rollMoveSpeed = 25.0f;
     [SerializeField] private float rollTurnSpeed = 4.0f;
     [SerializeField] private Vector2 limits = new Vector2(5, 3);
+    [SerializeField] private float moveLimit = 10.0f;
 
     public bool isRolling { get; private set; } = false;
     private Vector3 rollDirection = Vector3.zero;
@@ -33,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
             Roll();
             if (rollTime >= 1.0f)
             {
-                rollTime = 0.0f;
                 isRolling = false;
             }
         }
@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
             Move(dir);
             Lean(dir);
         }
-       
     }
 
     public void Move(Vector2 direction)
@@ -59,8 +58,7 @@ public class PlayerMovement : MonoBehaviour
         //worldPosition.y = Mathf.Clamp01(worldPosition.y);
         //transform.position = Camera.main.ViewportToWorldPoint(worldPosition);
 
-        Vector3 localPos = this.transform.localPosition;
-        this.transform.localPosition = new Vector3(Mathf.Clamp(localPos.x, -limits.x, limits.x), Mathf.Clamp(localPos.y, -limits.y, limits.y), localPos.z);
+        this.transform.localPosition = Vector3.ClampMagnitude(this.transform.localPosition, moveLimit);
     }
 
     //public void Look(Vector2 direction)
@@ -81,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         if (swipeEventData.direction == SwipeDirection.Left || swipeEventData.direction == SwipeDirection.Right)
         {
             isRolling = true;
+            rollTime = 0.0f;
             rollDirection = swipeEventData.swipeVector.normalized;
         }
     }
