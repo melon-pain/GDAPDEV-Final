@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class Player : MonoBehaviour
     
     [Header("Mana Modifier")]
     [SerializeField] private float MPMaxMod = 5.0f;
+
+    [Space(4.0f)] public UnityEvent OnFatal;
+    [Space(4.0f)] public UnityEvent OnDeath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,9 +107,7 @@ public class Player : MonoBehaviour
         energy.Damage(amount);
         if (energy.IsEnergyBroken())
         {
-            GameObject fatalText = GameObject.Find("Fatal Text");
-            if (fatalText != null)
-                fatalText.GetComponent<Text>().enabled = true;
+            OnFatal.Invoke();
         }
     }
 
@@ -112,6 +115,7 @@ public class Player : MonoBehaviour
     {
         //Display results
         Debug.Log("Player Dead!");
+        OnDeath.Invoke();
     }
 
 }

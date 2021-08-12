@@ -15,7 +15,7 @@ public class EnemySpawn : MonoBehaviour
     private void Start()
     {
         for (int i = 0; i < 4; i++)
-            Spawn(i, 10);
+            Spawn(i, 4);
     }
 
     // Update is called once per frame
