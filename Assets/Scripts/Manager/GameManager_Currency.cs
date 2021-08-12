@@ -30,7 +30,7 @@ public class GameManager_Currency : MonoBehaviour
 
     public static bool CheckIfPurchasable(int amount)
     {
-        if (amount > essence)
+        if (essence > amount)
             return true;
         else
             return false;

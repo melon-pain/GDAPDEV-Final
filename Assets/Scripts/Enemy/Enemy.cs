@@ -94,6 +94,11 @@ public class Enemy : MonoBehaviour
             {
                 isDead = true;
                 isShooting = false;
+                if(GameManager_Level.Instance != null)
+                {
+                    GameManager_Level.AddScore(15);
+                }
+
                 Deactivate();
             }
         }

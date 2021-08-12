@@ -19,13 +19,13 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Text textCurrency;
     [SerializeField] private Text[] textInfo = new Text[7];
 
-    public static int ES_Recharge_Price { get; private set; } = 5;
-    public static int ES_Max_Price      { get; private set; } = 5;
-    public static int MP_Max_Price      { get; private set; } = 5;
-    public static int MP_Cost_Price     { get; private set; } = 5;
-    public static int EP_Damage_Price   { get; private set; } = 5;
-    public static int EP_Speed_Price    { get; private set; } = 5;
-    public static int EP_FireRate_Price { get; private set; } = 5;
+    public static int ES_Recharge_Price { get; private set; } = 10;
+    public static int ES_Max_Price      { get; private set; } = 10;
+    public static int MP_Max_Price      { get; private set; } = 10;
+    public static int MP_Cost_Price     { get; private set; } = 10;
+    public static int EP_Damage_Price   { get; private set; } = 10;
+    public static int EP_Speed_Price    { get; private set; } = 10;
+    public static int EP_FireRate_Price { get; private set; } = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -58,13 +58,15 @@ public class ShopManager : MonoBehaviour
                     {
                         GameManager_Upgrades.ES_Recharge++;
                         GameManager_Currency.DeductEssence(ES_Recharge_Price);
+                        ES_Recharge_Price += 2 * GameManager_Upgrades.ES_Recharge;
                     }
-                break; 
+                 break; 
             case 1: if (GameManager_Upgrades.ES_Max < ES_Max_Limit)
                     if (GameManager_Currency.CheckIfPurchasable(ES_Max_Price))
                     {
                         GameManager_Upgrades.ES_Max++;
                         GameManager_Currency.DeductEssence(ES_Max_Price);
+                        ES_Max_Price += 2 * GameManager_Upgrades.ES_Max;
                     }
                  break;
             case 2: if (GameManager_Upgrades.MP_Max < MP_Max_Limit)
@@ -72,6 +74,7 @@ public class ShopManager : MonoBehaviour
                     {
                         GameManager_Upgrades.MP_Max++;
                         GameManager_Currency.DeductEssence(MP_Max_Price);
+                        MP_Max_Price += 2 * GameManager_Upgrades.MP_Max;
                     }
                  break;
             case 3: if (GameManager_Upgrades.MP_Cost < MP_Cost_Limit)
@@ -79,13 +82,15 @@ public class ShopManager : MonoBehaviour
                     {
                         GameManager_Upgrades.MP_Cost++;
                         GameManager_Currency.DeductEssence(MP_Cost_Price);
+                        MP_Cost_Price += 2 * GameManager_Upgrades.MP_Cost;
                     }
-                        break;
+                 break;
             case 4: if (GameManager_Upgrades.EP_Damage < EP_Damage_Limit)
                     if (GameManager_Currency.CheckIfPurchasable(EP_Damage_Price))
                     {
                         GameManager_Upgrades.EP_Damage++;
                         GameManager_Currency.DeductEssence(EP_Damage_Price);
+                        EP_Damage_Price += 2 * GameManager_Upgrades.EP_Damage;
                     }
                 break;
             case 5: if (GameManager_Upgrades.EP_Speed < EP_Speed_Limit)
@@ -93,6 +98,7 @@ public class ShopManager : MonoBehaviour
                     {
                         GameManager_Upgrades.EP_Speed++;
                         GameManager_Currency.DeductEssence(EP_Speed_Price);
+                        EP_Speed_Price += 2 * GameManager_Upgrades.EP_Speed;
                     }
                 break;
             case 6: if (GameManager_Upgrades.EP_FireRate < EP_FireRate_Limit)
@@ -100,6 +106,7 @@ public class ShopManager : MonoBehaviour
                     {
                         GameManager_Upgrades.EP_FireRate++;
                         GameManager_Currency.DeductEssence(EP_FireRate_Price);
+                        EP_FireRate_Price += 2 * GameManager_Upgrades.EP_FireRate;
                     }
                 break;
             default: Debug.LogWarning("Upgrade Unavailable");
@@ -140,6 +147,9 @@ public class ShopManager : MonoBehaviour
                 price = 0; break;
         }
         textCurrency.text = $"Essence: {GameManager_Currency.essence}";
-        textInfo[textIndex].text = $"Current Level:\n{currentLevel}\n Price:\n{price}";
+        if (currentLevel == 5)
+            textInfo[textIndex].text = $"Current Level:\n{currentLevel} MAX\n Price:\nN/A";
+        else
+            textInfo[textIndex].text = $"Current Level:\n{currentLevel}\n Price:\n{price}";
     }
 }

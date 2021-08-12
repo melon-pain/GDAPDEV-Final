@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
             energyRechargeRate += GameManager_Upgrades.ES_Recharge * ESRechargeMod;
             energyMax += GameManager_Upgrades.ES_Max * ESMaxMod;
             manaMax += GameManager_Upgrades.MP_Max * MPMaxMod;
-            Debug.Log($"Energy: {energyMax}");
         }
         energy = new EnergySystem(energyMax);
         energyBar = GameObject.Find("Energy Bar").GetComponent<Bar>();
