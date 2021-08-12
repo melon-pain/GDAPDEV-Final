@@ -20,6 +20,14 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject target;
 
+    [Header("Mana Modifier")]
+    [SerializeField] private float MPMaxMod = 5.0f;
+
+    [Header("Elemental Projectile Modifier")]
+    [SerializeField] private float EPDamageMod = 1.0f;
+    [SerializeField] private float EPSpeed = 2.0f;
+    [SerializeField] private float EPFireRate = 0.5f;
+
     private bool isFiring = false;
     private bool isFiringBeam = false;
     private bool isBeamReady = true;
@@ -32,7 +40,14 @@ public class PlayerShooting : MonoBehaviour
     private void Start()
     {
         player = this.gameObject.GetComponent<Player>();
-        if(beam != null)
+
+        if (GameManager_Upgrades.Instance != null)
+        {
+            //Insert Damage Modifier here
+            //Insert Speed Modifier here
+            fireRate += GameManager_Upgrades.EP_FireRate * EPFireRate;
+        }
+            if (beam != null)
         {
             beam.SetActive(false);
         }
@@ -82,7 +97,7 @@ public class PlayerShooting : MonoBehaviour
         //beamTarget.transform.position = new Vector3(dragEventData.TargetFinger.position.x, dragEventData.TargetFinger.position.y, 5.0f);
 
         //beam.GetComponent<Beam>().SetBeamStartPosition(r.origin);
-        beam.GetComponent<Beam>().SetBeamEndPosition(r.origin + r.direction * 12.0f);
+        beam.GetComponent<Beam>().SetBeamEndPosition(r.origin + r.direction * 15.0f);
         //beamTarget.transform.position = Vector3.ProjectOnPlane(beamTarget.transform.position, Vector3.forward);
 
     }

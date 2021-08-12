@@ -14,9 +14,22 @@ public class Player : MonoBehaviour
     private float manaMax = 100f;
     private Bar manaBar;
 
+    [Header("Energy Shield Modifier")]
+    [SerializeField] private float ESRechargeMod = 0.5f;
+    [SerializeField] private float ESMaxMod = 10.0f;
+    
+    [Header("Mana Modifier")]
+    [SerializeField] private float MPMaxMod = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager_Upgrades.Instance != null)
+        {
+            energyRechargeRate += GameManager_Upgrades.ES_Recharge * ESRechargeMod;
+            energyMax += GameManager_Upgrades.ES_Max * ESMaxMod;
+            manaMax += GameManager_Upgrades.MP_Max * MPMaxMod;
+            Debug.Log($"Energy: {energyMax}");
+        }
         energy = new EnergySystem(energyMax);
         energyBar = GameObject.Find("Energy Bar").GetComponent<Bar>();
         mana = new ManaSystem(manaMax);
