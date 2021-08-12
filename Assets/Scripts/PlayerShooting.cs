@@ -26,7 +26,7 @@ public class PlayerShooting : MonoBehaviour
 
     private Player player;
     private float ticks = 0.0f;
-    private const float distance = 3.0f;
+    private const float distance = 2.0f;
 
     // Start is called before the first frame update
     private void Start()

@@ -1,17 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Enemy : MonoBehaviour
 {
-    #region Stats
     [Header("Enemy Stats")]
     [SerializeField] private Element element;
     [SerializeField] private float HP = 100.0f;
-    private bool isDead = false;
-    #endregion Stats
+    public bool isDead { get; private set; } = false;
 
-    #region Shooting
     [Header("Shooting")]
     [SerializeField] private EnemyProjectile enemyProjectile;
     [SerializeField] private float maxShootTime = 2.0f;
@@ -19,7 +17,9 @@ public class Enemy : MonoBehaviour
     private bool isShooting = false;
     private float shootTime = 0.0f;
     private float shootInterval = 0.0f;
-    #endregion Shooting
+    public CinemachineDollyCart cart;
+    private float cartPos = 0.0f;
+    public bool isMoving { get; private set; } = true;
 
     [Header("Body")]
     [SerializeField] private SkinnedMeshRenderer body;
@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     private GameObject player; //Player reference
     private Animator animator;
 
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -40,6 +41,8 @@ public class Enemy : MonoBehaviour
         animator = this.GetComponent<Animator>();
 
         this.Activate();
+
+        cartPos = Random.Range(0.25f, 0.75f);
     }
 
     // Update is called once per frame
@@ -47,6 +50,16 @@ public class Enemy : MonoBehaviour
     {
         if (isDead)
             return;
+
+        if (isMoving)
+        {
+            if (cart.m_Position >= cartPos)
+            {
+                isMoving = false;
+                Destroy(cart);
+            }
+            return;
+        }
 
         if (isShooting)
         {
@@ -107,5 +120,10 @@ public class Enemy : MonoBehaviour
     public Element GetElement()
     {
         return this.element;
+    }
+
+    public void SetPath(CinemachinePath path)
+    {
+        cart.m_Path = path;
     }
 }

@@ -65,7 +65,6 @@ public class GestureManager : MonoBehaviour
         //Consume UI
         if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.currentSelectedGameObject)
         {
-            Debug.LogError("Touching UI");
             wasTouchingUI = true;
             return;
         }
@@ -78,12 +77,9 @@ public class GestureManager : MonoBehaviour
 
         finger_1 = Input.GetTouch(0);
 
-        Debug.Log("One finger");
-
         switch (finger_1.phase)
         {
             case TouchPhase.Began:
-                Debug.LogWarning("Touch start");
                 startPoint = finger_1.position;
                 gestureTime = 0.0f;
                 break;
@@ -95,8 +91,6 @@ public class GestureManager : MonoBehaviour
                 }
                 else if (gestureTime <= swipeProperty.GetSwipeTime() && Vector2.Distance(startPoint, endPoint) >= (Screen.dpi * swipeProperty.GetMinSwipeDistance()))
                 {
-                    Debug.LogWarning($"Start {startPoint}");
-                    Debug.LogWarning($"End {endPoint}");
                     Swipe();
                 }
                 break;
@@ -201,7 +195,6 @@ public class GestureManager : MonoBehaviour
         if (OnDrag != null)
         {
             OnDrag.Invoke(dragEventData);
-            //Debug.Log("Invoking");
         }
 
     }
