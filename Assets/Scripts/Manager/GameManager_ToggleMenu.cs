@@ -43,18 +43,25 @@ public class GameManager_ToggleMenu : MonoBehaviour
         }    
     }
 
-    void ToggleMenu()
+    void DisableMenu()
+    {
+        menu.SetActive(false);
+        gameManager.isMenuOn = false;
+        gameManager.CallEventMenuToggle();
+    }
+
+    public void ToggleMenu()
     {
         if(menu != null)
         {
-            
-            menu.SetActive(!menu.activeSelf);
-            gameManager.isMenuOn = !gameManager.isMenuOn;
             if (gameManager.isGameOver)
             {
-                menu.SetActive(false);
-                gameManager.isMenuOn = false;
+                DisableMenu();
+                return;
             }
+            menu.SetActive(!menu.activeSelf);
+            gameManager.isMenuOn = !gameManager.isMenuOn;
+            
             gameManager.CallEventMenuToggle();
         }
         else

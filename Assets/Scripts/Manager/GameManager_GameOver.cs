@@ -32,6 +32,10 @@ public class GameManager_GameOver : MonoBehaviour
                 Debug.Log("Calling Event Menu Toggle");
                 gameManager.CallEventMenuToggle();
             }
+            if(gameManager.isOptionsUIOn)
+            {
+                gameManager.CallEventOptionsUIToggle();
+            }
             gameOverPanel.SetActive(true);
         }
     }

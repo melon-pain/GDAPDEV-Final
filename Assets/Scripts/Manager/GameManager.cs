@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public delegate void GameManagerEventHandler();
     public event GameManagerEventHandler MenuToggleEvent;
     public event GameManagerEventHandler ShopToggleEvent;
+    public event GameManagerEventHandler OptionsToggleEvent;
     public event GameManagerEventHandler RestartLevelEvent;
     public event GameManagerEventHandler GoToMenuSceneEvent;
     public event GameManagerEventHandler GameOverEvent;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public bool isGameOver;
     public bool isShopUIOn;
     public bool isMenuOn;
+    public bool isOptionsUIOn;
     
     public void CallEventMenuToggle()
     {
@@ -30,6 +32,15 @@ public class GameManager : MonoBehaviour
             ShopToggleEvent();
         }
     }
+
+    public void CallEventOptionsUIToggle()
+    {
+        if (OptionsToggleEvent != null)
+        {
+            OptionsToggleEvent();
+        }
+    }
+
 
     public void CallEventRestartLevel()
     {
