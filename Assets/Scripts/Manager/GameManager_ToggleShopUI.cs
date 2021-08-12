@@ -7,7 +7,6 @@ public class GameManager_ToggleShopUI : MonoBehaviour
     //If scene has shop
     [SerializeField] private bool hasShop;
     [SerializeField] private GameObject shopUI;
-    [SerializeField] private string toggleShopButton;
     private GameManager gameManager;
 
     // Start is called before the first frame update
@@ -25,22 +24,17 @@ public class GameManager_ToggleShopUI : MonoBehaviour
     void SetInitialReferences()
     {
         gameManager = GetComponent<GameManager>();
-        if(toggleShopButton == "")
-        {
-            Debug.LogWarning("Type the name of button used for toggling Shop UI");
-            this.enabled = false;
-        }
     }
 
     void CheckForShopUIToggleRequest()
     {
-        if(Input.GetButtonUp(toggleShopButton) && !gameManager.isMenuOn && !gameManager.isGameOver && hasShop)
+        if (Input.GetKeyUp(KeyCode.U) && !gameManager.isMenuOn && hasShop)
         {
             ToggleShopUI();
         }
     }
 
-    void ToggleShopUI()
+    public void ToggleShopUI()
     {
         if(shopUI != null)
         {

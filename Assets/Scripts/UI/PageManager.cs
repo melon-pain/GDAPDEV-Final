@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopPageManager : MonoBehaviour
+public class PageManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] pages;
 

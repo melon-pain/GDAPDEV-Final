@@ -11,13 +11,20 @@ public class GameManager_TogglePause : MonoBehaviour
     {
         SetInitialReferences();
         gameManager.MenuToggleEvent += TogglePause;
+        //if (!gameManager.isGameOver)
         gameManager.ShopToggleEvent += TogglePause;
+        
+        //gameManager.GameOverEvent += TogglePause;
+        //gameManager.RestartLevelEvent += TogglePause;
     }
 
     private void OnDisable()
     {
         gameManager.MenuToggleEvent -= TogglePause;
-        gameManager.ShopToggleEvent -= TogglePause;
+        //if (!gameManager.isGameOver)
+            gameManager.ShopToggleEvent -= TogglePause;
+        //gameManager.GameOverEvent -= TogglePause;
+        //gameManager.RestartLevelEvent -= TogglePause;
     }
 
     void SetInitialReferences()
@@ -25,9 +32,9 @@ public class GameManager_TogglePause : MonoBehaviour
         gameManager = GetComponent<GameManager>();
     }
 
-    void TogglePause()
+    public void TogglePause()
     {
-        if(isPaused)
+        if(isPaused && (!gameManager.isGameOver))
         {
             Time.timeScale = 1.0f;
             isPaused = false;
