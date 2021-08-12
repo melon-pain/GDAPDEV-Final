@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     private float shootTime = 0.0f;
     private float shootInterval = 0.0f;
     public CinemachineDollyCart cart;
-    private float cartPos = 0.0f;
+    [HideInInspector] public float cartPos = 0.0f;
     public bool isMoving { get; private set; } = true;
 
     [Header("Body")]
@@ -41,8 +41,6 @@ public class Enemy : MonoBehaviour
         animator = this.GetComponent<Animator>();
 
         this.Activate();
-
-        cartPos = Random.Range(0.25f, 0.75f);
     }
 
     // Update is called once per frame

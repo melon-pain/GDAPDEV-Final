@@ -14,8 +14,8 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        for (int i = 0; i < 10; i++)
-            Invoke("Spawn", 1);
+        for (int i = 0; i < 4; i++)
+            Spawn(i, 10);
     }
 
     // Update is called once per frame
@@ -24,10 +24,11 @@ public class EnemySpawn : MonoBehaviour
         
     }
 
-    private void Spawn()
+    private void Spawn(int i, int max)
     {
         Enemy enemy = enemyPool.GetObjectFromPool().GetComponent<Enemy>();
-        enemy.SetPath(paths[Random.Range(0, 2)]);
+        enemy.SetPath(paths[i % paths.Count]);
         enemy.cart.m_Position = 0.0f;
+        enemy.cartPos = Mathf.Clamp(((float)i + 1.0f) / max, 0.2f, 0.8f);
     }
 }
