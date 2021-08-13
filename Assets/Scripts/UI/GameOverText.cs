@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameOverText : MonoBehaviour
 {
     [SerializeField] private Text gameOver;
+    [SerializeField] private Text time;
     [SerializeField] private Text highScore;
     [SerializeField] private Text score;
     [SerializeField] private Text essence;
@@ -23,9 +24,10 @@ public class GameOverText : MonoBehaviour
                 gameOver.text = "Level Cleared!";
             else
                 gameOver.text = "Level Failed";
-            highScore.text = $"High Score:\n {GameManager_Level.highScore}";
-            score.text = $"Score:\n {GameManager_Level.score}";
-            essence.text = $"Essence gained:\n{GameManager_Level.essenceGained}";
+            time.text = $"Time Finished = {(int)GameManager_Level.timer}";
+            score.text = $"Final Score = {GameManager_Level.score} - {(int)(GameManager_Level.timer * GameManager_Level.timeScoreMultiplier)} = {GameManager_Level.finalScore}";
+            highScore.text = $"High Score = {GameManager_Level.highScore}";
+            essence.text = $"Essence gained = {GameManager_Level.essenceGained}";
         }
     }
 }
