@@ -77,7 +77,7 @@ public class GameManager_Level : MonoBehaviour
 
     private void AddEssenceToCurrency(int amount)
     {
-        GameManager_Currency.AddEssence(enemyKillCount * enemyEssenceDrop);
+        GameManager_Currency.AddEssence(amount);
     }
 
     public void Results()
@@ -97,10 +97,11 @@ public class GameManager_Level : MonoBehaviour
 
         if(highScore < finalScore)
             highScore = finalScore;
-        
-        if(levelClear == true)
+
+        if (levelClear == true)
         {
             essenceGained += (enemyKillCount * enemyEssenceDrop) + (bossKillCount * bossEssenceDrop);
+            Debug.Log($"Essence gained: {essenceGained}");
             AddEssenceToCurrency(essenceGained);
         }
     }

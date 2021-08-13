@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 76453805}
   - component: {fileID: 76453804}
   - component: {fileID: 76453808}
+  - component: {fileID: 76453809}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -652,6 +653,35 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &76453809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76453802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bb0eaaf603ca04c98e55adf3568198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaRechargeRange: 5
+  gyroTxt: {fileID: 276887921}
+  OnGyroTiltDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76453806}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: RechargeMana
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &87892075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4223,6 +4253,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &276887921 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1278755582113997335, guid: ae7aff81b855a244196a93774456d769, type: 3}
+  m_PrefabInstance: {fileID: 276887911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &287161934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5611,7 +5652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762593897187392941, guid: 630606ce8d92dde468d4a397aa5391c8, type: 3}
       propertyPath: poolCount
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8762593897187392946, guid: 630606ce8d92dde468d4a397aa5391c8, type: 3}
       propertyPath: m_RootOrder
@@ -5755,7 +5796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 589737838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9403,7 +9444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818054237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.125, z: -0.557924}
+  m_LocalPosition: {x: 0, y: 0.125, z: -1.4668698}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 668870472}
@@ -10977,7 +11018,7 @@ GameObject:
   - component: {fileID: 969083905}
   - component: {fileID: 969083907}
   - component: {fileID: 969083906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crosshair 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11441,7 +11482,7 @@ GameObject:
   - component: {fileID: 1149193924}
   - component: {fileID: 1149193926}
   - component: {fileID: 1149193925}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crosshair 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17193,7 +17234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6031187118853757056, guid: 930f87c336c4e044d876ec2c16f38d49, type: 3}
       propertyPath: swipeProperty.minSwipeDistance
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6031187118853757056, guid: 930f87c336c4e044d876ec2c16f38d49, type: 3}
       propertyPath: OnTap.m_PersistentCalls.m_Calls.Array.size
