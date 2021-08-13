@@ -1466,17 +1466,6 @@ MonoBehaviour:
   m_PositionUnits: 1
   m_Speed: 1
   m_Position: 0
---- !u!114 &2123167717 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9145018464182793875, guid: f1f45cf455b1eaa4383c29a8df49c0df, type: 3}
-  m_PrefabInstance: {fileID: 1927720056264493209}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d37e5385efd7064cb1d54c94960acae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1927720056264493209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1532,14 +1521,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Spawner
       objectReference: {fileID: 0}
-    - target: {fileID: 1927720054464808387, guid: f1f45cf455b1eaa4383c29a8df49c0df, type: 3}
-      propertyPath: boss
-      value: 
-      objectReference: {fileID: 6989789545673597105, guid: bd56f6fad4defe6448c8556b14af8ec8, type: 3}
-    - target: {fileID: 1927720054464808387, guid: f1f45cf455b1eaa4383c29a8df49c0df, type: 3}
-      propertyPath: bossPath
-      value: 
-      objectReference: {fileID: 2123167717}
     - target: {fileID: 1927720054464808387, guid: f1f45cf455b1eaa4383c29a8df49c0df, type: 3}
       propertyPath: enemyPool
       value: 
