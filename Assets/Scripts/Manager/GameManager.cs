@@ -56,10 +56,14 @@ public class GameManager : MonoBehaviour
             GoToMenuSceneEvent();
         }
     }
-    public void CallEventGameOver()
+    public void CallEventGameOver(bool flag)
     {
         if (GameOverEvent != null)
         {
+            if(GameManager_Level.Instance != null)
+            {
+                GameManager_Level.levelClear = flag;
+            }
             isGameOver = true;
             GameOverEvent();
         }

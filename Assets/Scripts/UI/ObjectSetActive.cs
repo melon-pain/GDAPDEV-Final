@@ -6,6 +6,15 @@ public class ObjectSetActive : MonoBehaviour
 {
     [SerializeField] private GameObject[] targetObjects;
 
+    public void EnableObjectByIndex(int index)
+    {
+        targetObjects[index].SetActive(true);
+    }
+
+    public void DisableObjectByIndex(int index)
+    {
+        targetObjects[index].SetActive(false);
+    }
 
     public void SetAllObjects(bool flag)
     {

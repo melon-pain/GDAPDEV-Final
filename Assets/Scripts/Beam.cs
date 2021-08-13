@@ -12,6 +12,7 @@ public class Beam : MonoBehaviour
     [SerializeField] private Transform beamStart;
     [SerializeField] private Transform beamEnd;
     private LineRenderer lineRend;
+    [SerializeField] private float damage = 1.0f;
 
     Ray ray;
     RaycastHit hit;
@@ -25,26 +26,10 @@ public class Beam : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            beamEnd.localPosition -= new Vector3(Time.deltaTime * 50f, 0f, 0f);
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            beamEnd.localPosition += new Vector3(Time.deltaTime * 50f, 0f, 0f);
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            beamEnd.localPosition += new Vector3(0f, Time.deltaTime * 50f, 0f);
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            beamEnd.localPosition -= new Vector3(0f, Time.deltaTime * 50f, 0f);
-        }
-
         if(Physics.Linecast(beamStart.position, beamEnd.position, out hit))
         {
-            print($"Line hit: {hit.collider.gameObject.name}");
+            Debug.Log($"Line hit: {hit.collider.gameObject.name}");
+            EnemyHit(hit.collider);
         }
 
         Debug.DrawLine(beamStart.position, beamEnd.position, Color.green);
@@ -62,14 +47,34 @@ public class Beam : MonoBehaviour
         }
     }
 
-    public void SetBeamStartPosition(Vector3 pos)
+    public void SetBeamElement(Element newElement)
     {
-        beamStart.position = pos;
+        element = newElement;
+        this.gameObject.GetComponent<LineRenderer>().material = materials[(int)element];
+        if (startColors.Count >= 4 && endColors.Count >= 4)
+        {
+            this.gameObject.GetComponent<LineRenderer>().startColor = startColors[(int)element];
+            this.gameObject.GetComponent<LineRenderer>().endColor = endColors[(int)element];
+        }
     }
 
     public void SetBeamEndPosition(Vector3 pos)
     {
         beamEnd.position = pos;
     }
-
+    
+    private void EnemyHit(Collider collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.TakeDamage(this.element, this.damage);
+        }
+        else if (collision.gameObject.tag == "Boss Plate")
+        {
+            BossPlate plate = collision.gameObject.GetComponent<BossPlate>();
+            plate.TakeDamage(this.element, this.damage);
+        }
+    }
+    
 }

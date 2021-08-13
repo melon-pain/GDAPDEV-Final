@@ -553,10 +553,10 @@ RectTransform:
   m_Father: {fileID: 8439411069929594508}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1975.0691, y: 689.88745}
+  m_SizeDelta: {x: 0, y: 689.88745}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8439411068342689042
 CanvasRenderer:
@@ -636,6 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: {fileID: 8439411068012812779}
   time: {fileID: 1910248355311318098}
+  calculateScore: {fileID: 8116093208045300772}
   highScore: {fileID: 33339793215099013}
   score: {fileID: 8439411068987358094}
   essence: {fileID: 8439411069738703281}

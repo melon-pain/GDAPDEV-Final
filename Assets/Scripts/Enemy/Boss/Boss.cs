@@ -28,6 +28,7 @@ public class Boss : MonoBehaviour
     private Animator animator;
 
     public bool isDead { get; private set; } = false;
+    private EnemySFX sfx;
     public UnityEvent OnDeath;
 
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class Boss : MonoBehaviour
         shootInterval = Random.Range(1.0f, 2.0f);
         player = GameObject.FindGameObjectWithTag("Player");
         animator = this.GetComponent<Animator>();
+        sfx = this.GetComponent<EnemySFX>();
 
         foreach (GameObject plate in plates)
         {
@@ -89,11 +91,15 @@ public class Boss : MonoBehaviour
     public void TakeDamage(float amount)
     {
         HP -= amount;
-
+        sfx.PlayDamaged();
         if (HP <= 0.0f)
         {
             isDead = true;
             isShooting = false;
+            if (GameManager_Level.Instance != null)
+            {
+                GameManager_Level.AddBossKillCount();
+            }
             OnDeath.Invoke();
             Destroy(this.gameObject);
         }
