@@ -14,6 +14,13 @@ public class BossPlate : MonoBehaviour
 
     public UnityEvent<float> OnTakeDamage;
 
+    private GameObject player;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     public void TakeDamage(Element attackingElement, float amount)
     {
         if (Elements.GetWeakness(this.element) == attackingElement)
@@ -22,12 +29,11 @@ public class BossPlate : MonoBehaviour
             this.HP -= amount;
             OnTakeDamage.Invoke(amount);
 
-            Debug.Log("Plate DMG");
-
             if (this.HP <= 0.0f)
             {
-                Destroy(this.plate, 1);
-                Destroy(this.gameObject, 1);
+                player.GetComponent<PlayerShooting>().RemoveLockOn();
+                Destroy(this.plate);
+                Destroy(this.gameObject);
             }
         }
     }

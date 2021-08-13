@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1656125578879085205}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7803154834242669222}
   - component: {fileID: 7224350820229055823}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1701508837371402429}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lower_Plate_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7861138826738252577}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Upper_Plate_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8116441911814948752}
   - component: {fileID: 2871159867643364984}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Electric Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2485484984789345219}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5838464724960597164}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lower_Plate_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4318797398391587053}
   - component: {fileID: 503231019022324925}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Water Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 247588320880031050}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Core_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5777710707810578260}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lower_Plate_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 4371663690727989361}
   - component: {fileID: 7908832627531687367}
   - component: {fileID: 7908832627531687365}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 930487457054551965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Upper_Plate_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6058738560638359514}
   - component: {fileID: 8890226869050720434}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5468491426740462611}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Core 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,7 +747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5825594656527842738}
   - component: {fileID: 7186173692379052835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ice Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 7908832627192310149}
   - component: {fileID: 7908832627192310150}
   - component: {fileID: 7908832627192310148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Emitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5657,7 +5657,7 @@ GameObject:
   - component: {fileID: 7908832627848812270}
   - component: {fileID: 7908832627848812269}
   - component: {fileID: 1345730505932846210}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Electric Collider
   m_TagString: Boss Plate
   m_Icon: {fileID: 0}
@@ -5689,7 +5689,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.075, y: 0.075, z: 0.01}
+  m_Size: {x: 0.08, y: 0.08, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1345730505932846210
 MonoBehaviour:
@@ -5720,7 +5720,7 @@ GameObject:
   - component: {fileID: 7908832627926670223}
   - component: {fileID: 7908832627926670222}
   - component: {fileID: 4173305060497496800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire Collider
   m_TagString: Boss Plate
   m_Icon: {fileID: 0}
@@ -5752,7 +5752,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.075, y: 0.075, z: 0.01}
+  m_Size: {x: 0.08, y: 0.08, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4173305060497496800
 MonoBehaviour:
@@ -5783,7 +5783,7 @@ GameObject:
   - component: {fileID: 7908832628316790812}
   - component: {fileID: 7908832628316790803}
   - component: {fileID: 8794095032895573241}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Water Collider
   m_TagString: Boss Plate
   m_Icon: {fileID: 0}
@@ -5815,7 +5815,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.075, y: 0.075, z: 0.01}
+  m_Size: {x: 0.08, y: 0.08, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8794095032895573241
 MonoBehaviour:
@@ -5846,7 +5846,7 @@ GameObject:
   - component: {fileID: 7908832628573077600}
   - component: {fileID: 7908832628573077607}
   - component: {fileID: 6846526097060842060}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ice Collider
   m_TagString: Boss Plate
   m_Icon: {fileID: 0}
@@ -5878,7 +5878,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.075, y: 0.075, z: 0.01}
+  m_Size: {x: 0.08, y: 0.08, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6846526097060842060
 MonoBehaviour:
@@ -5907,7 +5907,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7883021783505936081}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Upper_Plate_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5940,7 +5940,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2465621414770544284}
   - component: {fileID: 7726307986484554477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6028,7 +6028,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3070156671120916350}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Upper_Plate_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6060,7 +6060,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418971193660091118}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lower_Plate_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
