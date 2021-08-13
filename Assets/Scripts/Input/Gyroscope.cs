@@ -6,12 +6,10 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 public class Gyroscope : MonoBehaviour
 {
-    private Player player;
     [SerializeField] private float manaRechargeRange = 5.0f;
     [SerializeField] private Text gyroTxt;
     [Space(4.0f)] public UnityEvent OnGyroTiltDown;
     
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +21,6 @@ public class Gyroscope : MonoBehaviour
         {
             Debug.Log("No gyro");
         }
-        player = this.transform.parent.gameObject.GetComponentInChildren<Player>();
     }
     private void FixedUpdate()
     {
@@ -34,7 +31,6 @@ public class Gyroscope : MonoBehaviour
         if (Input.gyro.rotationRate.x <= -manaRechargeRange)
         {
             OnGyroTiltDown.Invoke();
-            Debug.Log("Invoking Gyro");
         }
     }
 }
