@@ -92,7 +92,19 @@ public class PlayerShooting : MonoBehaviour
 
         Projectile projectile = pool.GetObjectFromPool().GetComponent<Projectile>();
         projectile.Activate(this.element, pos, dir);
-        player.mana.Consume(manaCost);
+        
+        if(GameManager_Cheat.Instance != null)
+        {
+            if (!GameManager_Cheat.isInfiniteMana)
+            {
+                player.mana.Consume(manaCost);
+            }
+        }
+        else
+        {
+            player.mana.Consume(manaCost);
+        }  
+
         OnSingleFire.Invoke();
         ticks = 0.0f;
     }

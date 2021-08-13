@@ -2186,6 +2186,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -200
       objectReference: {fileID: 0}
+    - target: {fileID: 522142831351117014, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 522142831351117014, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 522142831351117014, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 472136494}
+    - target: {fileID: 522142831351117014, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 522142831351117014, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInvincibleToggleChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 522142831351117014, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager_Cheat, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 522142831351117014, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 605591222315629936, guid: ae7aff81b855a244196a93774456d769, type: 3}
       propertyPath: m_Name
       value: Button Area
@@ -2429,6 +2457,34 @@ PrefabInstance:
     - target: {fileID: 1787685401511688096, guid: ae7aff81b855a244196a93774456d769, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953433123309327737, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953433123309327737, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953433123309327737, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 472136494}
+    - target: {fileID: 1953433123309327737, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953433123309327737, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInfiniteManaToggleChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953433123309327737, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager_Cheat, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953433123309327737, guid: ae7aff81b855a244196a93774456d769, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1974624739472741560, guid: ae7aff81b855a244196a93774456d769, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4871,6 +4927,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4620434781232770, guid: 3279f000be57442e8919675201c82cf0, type: 3}
   m_PrefabInstance: {fileID: 353054658}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &354818986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1953433123309327737, guid: ae7aff81b855a244196a93774456d769, type: 3}
+  m_PrefabInstance: {fileID: 276887911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &360226248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5441,6 +5508,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4559021281514276, guid: ebcd83d2b7a28460fbb36a34f81f7068, type: 3}
   m_PrefabInstance: {fileID: 454491610}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &472136494 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6327828205043395435, guid: b4d8362f69981c84793fe6dee354cc24, type: 3}
+  m_PrefabInstance: {fileID: 1298234007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed39466424194f34e8d9010cb4a1bf71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &512451281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6160,6 +6238,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e292c3fb8dddf4761919031c71c29356, type: 3}
+--- !u!114 &638784142 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 522142831351117014, guid: ae7aff81b855a244196a93774456d769, type: 3}
+  m_PrefabInstance: {fileID: 276887911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &646019573
 Mesh:
   m_ObjectHideFlags: 0
@@ -9444,7 +9533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818054237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.125, z: -1.4668698}
+  m_LocalPosition: {x: 0, y: 0.125, z: -0.1059136}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 668870472}
@@ -13545,6 +13634,14 @@ PrefabInstance:
       propertyPath: hasOptions
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6327828205043395435, guid: b4d8362f69981c84793fe6dee354cc24, type: 3}
+      propertyPath: invincibleToggle
+      value: 
+      objectReference: {fileID: 638784142}
+    - target: {fileID: 6327828205043395435, guid: b4d8362f69981c84793fe6dee354cc24, type: 3}
+      propertyPath: infiniteManaToggle
+      value: 
+      objectReference: {fileID: 354818986}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4d8362f69981c84793fe6dee354cc24, type: 3}
 --- !u!114 &1298234008 stripped

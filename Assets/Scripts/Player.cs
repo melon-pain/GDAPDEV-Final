@@ -94,6 +94,11 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        if(GameManager_Cheat.Instance != null)
+        {
+            if (GameManager_Cheat.isInvincible)
+                return;
+        }
         // Invulnerable while rolling
         if (this.GetComponent<PlayerMovement>().isRolling)
             return;
