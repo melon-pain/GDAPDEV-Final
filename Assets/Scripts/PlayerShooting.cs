@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class PlayerShooting : MonoBehaviour
     [Header("Crosshair")]
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject target;
+    [SerializeField] private RenderObjects renderCrosshair;
 
     [Header("Mana Modifier")]
     [SerializeField] private float MPCostMod = 0.5f;
@@ -142,7 +145,7 @@ public class PlayerShooting : MonoBehaviour
             this.target = tapEventData.gameObject;
             crosshair.transform.parent = target.transform;
             crosshair.transform.localPosition = Vector3.zero;
-
+            renderCrosshair.SetActive(true);
             Debug.Log("Lock on!");
         }
         else
@@ -158,6 +161,7 @@ public class PlayerShooting : MonoBehaviour
         crosshair.transform.localPosition = Vector3.forward;
         crosshair.transform.localRotation = Quaternion.identity;
         crosshair.transform.localScale = Vector3.one;
+        renderCrosshair.SetActive(false);
     }
 
     public void SetFiring(bool value)
