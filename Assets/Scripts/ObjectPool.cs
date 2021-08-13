@@ -31,4 +31,9 @@ public class ObjectPool : MonoBehaviour
         objectPool[currentObject].SetActive(true);
         return objectPool[currentObject];
     }
+
+    public int GetPoolCount()
+    {
+        return poolCount;
+    }
 }
