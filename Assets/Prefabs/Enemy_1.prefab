@@ -5059,6 +5059,7 @@ MonoBehaviour:
   enemyProjectile: {fileID: 4787450386326057271}
   maxShootTime: 5
   cart: {fileID: 6041414182278864035}
+  cartPos: 0
   body: {fileID: 6111894463140008997}
   bodyColors:
   - {r: 1, g: 0, b: 0, a: 0}
@@ -5071,6 +5072,9 @@ MonoBehaviour:
   - {r: 0.8156863, g: 0.8156863, b: 16, a: 1}
   - {r: 8.407844, g: 0.8156863, b: 16, a: 1}
   - {r: 0.7529411, g: 2.6222222, b: 2.9960785, a: 1}
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &4787450386226465139
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5082,7 +5086,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6041414182278864035
 MonoBehaviour:
