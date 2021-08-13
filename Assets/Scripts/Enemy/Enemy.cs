@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Cinemachine;
 
 public class Enemy : MonoBehaviour
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour
     private GameObject player; //Player reference
     private Animator animator;
 
+    public UnityEvent OnDeath;
 
     // Start is called before the first frame update
     private void Start()
@@ -116,8 +118,9 @@ public class Enemy : MonoBehaviour
 
     private void Deactivate()
     {
-        player.GetComponent<PlayerShooting>().RemoveLockOn();
         this.gameObject.SetActive(false);
+        player.GetComponent<PlayerShooting>().RemoveLockOn();
+        OnDeath.Invoke();
     }
 
     public Element GetElement()
