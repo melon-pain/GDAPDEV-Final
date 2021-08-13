@@ -8,13 +8,13 @@ public class EnemySpawn : MonoBehaviour
 {
     [Header("Spawn")]
     [SerializeField] private ObjectPool enemyPool;
+    [SerializeField] private GameObject boss;
     private int enemyCount = 0;
     private int enemyInWaveCount = 0;
 
     [Header("Paths")]
     [SerializeField] private List<CinemachinePath> paths = new List<CinemachinePath>();
-
-    public UnityEvent OnWavesFinished;
+    [SerializeField] private CinemachinePath bossPath;
 
     // Start is called before the first frame update
     private void Start()
@@ -59,7 +59,10 @@ public class EnemySpawn : MonoBehaviour
         enemyInWaveCount--;
         if (enemyCount <= 0)
         {
-            OnWavesFinished.Invoke();
+            Boss boss_copy = GameObject.Instantiate(boss, this.transform).GetComponent<Boss>();
+            boss_copy.SetPath(bossPath);
+            boss_copy.cart.m_Position = 0.0f;
+
         }
         else if (enemyInWaveCount <= 0)
         {
