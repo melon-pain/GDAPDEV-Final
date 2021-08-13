@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
                 isShooting = false;
                 if(GameManager_Level.Instance != null)
                 {
-                    GameManager_Level.enemyKillCount++;
+                    GameManager_Level.AddKillCount();
                 }
 
                 Deactivate();

@@ -44,6 +44,12 @@ private const int enemyScore = 20;
         gameManager = GetComponent<GameManager>();
     }
 
+    public static void AddKillCount()
+    {
+        enemyKillCount++;
+        score += enemyScore;
+    }
+
     private void AddEssenceToCurrency(int amount)
     {
         Debug.Log("Added Currency");
@@ -52,7 +58,6 @@ private const int enemyScore = 20;
 
     public void Results()
     {
-        score = enemyKillCount * enemyScore;
         if(highScore < score)
         {
             highScore = score;
