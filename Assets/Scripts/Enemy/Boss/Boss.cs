@@ -83,9 +83,9 @@ public class Boss : MonoBehaviour
                 enemyProjectile.particles.Play();
                 shootInterval = Random.Range(1.0f, 2.0f);
             }
-
-            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), 0.5f);
         }
+
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), 0.5f);
     }
 
     public void TakeDamage(float amount)

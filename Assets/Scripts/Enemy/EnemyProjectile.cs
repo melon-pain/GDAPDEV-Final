@@ -15,6 +15,7 @@ public class EnemyProjectile : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
+        Debug.Log("OK");
         Player player = other.GetComponent<Player>();
         if (player)
         {
