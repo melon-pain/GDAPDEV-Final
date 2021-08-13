@@ -33,6 +33,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private MeshRenderer mesh;
 
     [Space(4.0f)] public UnityEvent OnSingleFire;
+    [Space(4.0f)] public UnityEvent OnBeamReady;
+    [Space(4.0f)] public UnityEvent OnBeamFire;
 
     private bool isFiring = false;
     private bool isFiringBeam = false;
@@ -49,7 +51,7 @@ public class PlayerShooting : MonoBehaviour
 
         if (GameManager_Upgrades.Instance != null)
         {
-            manaCost -= MPCostMod;
+            manaCost -= GameManager_Upgrades.MP_Cost * MPCostMod;
             //Insert Damage Modifier here
             //Insert Speed Modifier here
             fireRate += GameManager_Upgrades.EP_FireRate * EPFireRate;
@@ -96,6 +98,7 @@ public class PlayerShooting : MonoBehaviour
         {
             beam.SetActive(true);
             isFiringBeam = true;
+            OnBeamFire.Invoke();
             isBeamReady = false;
             StartCoroutine(StopFiringBeam());
             StartCoroutine(BeamCooldownTimer());
@@ -113,6 +116,7 @@ public class PlayerShooting : MonoBehaviour
     public void ChangeElement(Element newElement)
     {
         this.element = newElement;
+        beam.GetComponent<Beam>().SetBeamElement(newElement);
         switch (this.element)
         {
             case Element.Fire:
@@ -170,5 +174,6 @@ public class PlayerShooting : MonoBehaviour
         yield return new WaitForSeconds(beamCooldown);
         Debug.Log("Cooldown done");
         isBeamReady = true;
+        OnBeamReady.Invoke();
     }
 }

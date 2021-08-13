@@ -62,9 +62,15 @@ public class Beam : MonoBehaviour
         }
     }
 
-    public void SetBeamStartPosition(Vector3 pos)
+    public void SetBeamElement(Element newElement)
     {
-        beamStart.position = pos;
+        element = newElement;
+        this.gameObject.GetComponent<LineRenderer>().material = materials[(int)element];
+        if (startColors.Count >= 4 && endColors.Count >= 4)
+        {
+            this.gameObject.GetComponent<LineRenderer>().startColor = startColors[(int)element];
+            this.gameObject.GetComponent<LineRenderer>().endColor = endColors[(int)element];
+        }
     }
 
     public void SetBeamEndPosition(Vector3 pos)
