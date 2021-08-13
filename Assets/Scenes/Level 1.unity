@@ -5796,7 +5796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 589737838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9444,7 +9444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818054237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.125, z: -0.1059136}
+  m_LocalPosition: {x: 0, y: 0.125, z: -0.072293684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 668870472}
@@ -11018,7 +11018,7 @@ GameObject:
   - component: {fileID: 969083905}
   - component: {fileID: 969083907}
   - component: {fileID: 969083906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crosshair 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11482,7 +11482,7 @@ GameObject:
   - component: {fileID: 1149193924}
   - component: {fileID: 1149193926}
   - component: {fileID: 1149193925}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crosshair 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
