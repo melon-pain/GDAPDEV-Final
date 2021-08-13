@@ -28,9 +28,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float MPCostMod = 0.5f;
 
     [Header("Elemental Projectile Modifier")]
-    [SerializeField] private float EPDamageMod = 1.0f;
-    [SerializeField] private float EPSpeed = 2.0f;
-    [SerializeField] private float EPFireRate = 0.5f;
+    [SerializeField] private float EPFireRateMod = 0.5f;
 
     [Header("Core")]
     [SerializeField] private MeshRenderer mesh;
@@ -55,9 +53,13 @@ public class PlayerShooting : MonoBehaviour
         if (GameManager_Upgrades.Instance != null)
         {
             manaCost -= GameManager_Upgrades.MP_Cost * MPCostMod;
+            if(manaCost < 1)
+            {
+                manaCost = 1;
+            }
             //Insert Damage Modifier here
             //Insert Speed Modifier here
-            fireRate += GameManager_Upgrades.EP_FireRate * EPFireRate;
+            fireRate += GameManager_Upgrades.EP_FireRate * EPFireRateMod;
         }
             if (beam != null)
         {

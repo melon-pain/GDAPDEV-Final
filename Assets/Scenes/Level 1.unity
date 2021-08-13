@@ -513,7 +513,7 @@ MonoBehaviour:
   element: 0
   pool: {fileID: 1808188592}
   fireRate: 5
-  manaCost: 1
+  manaCost: 5
   beam: {fileID: 1190232793}
   beamTarget: {fileID: 0}
   beamCooldown: 12
@@ -522,9 +522,7 @@ MonoBehaviour:
   target: {fileID: 0}
   renderCrosshair: {fileID: 63461127307694169, guid: 4a8e21d5c33334b11b34a596161b9360, type: 2}
   MPCostMod: 0.5
-  EPDamageMod: 1
-  EPSpeed: 2
-  EPFireRate: 0.5
+  EPFireRateMod: 0.5
   mesh: {fileID: 1335283105}
   OnSingleFire:
     m_PersistentCalls:
@@ -9405,7 +9403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818054237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.125, z: -0.1059136}
+  m_LocalPosition: {x: 0, y: 0.125, z: -0.557924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 668870472}

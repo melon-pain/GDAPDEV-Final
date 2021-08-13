@@ -16,13 +16,22 @@ public class Projectile : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private VisualEffect visualEffect;
     [ColorUsageAttribute(true, true)] [SerializeField] private List<Color> particleColors = new List<Color>(4);
-    
+
+    [Header("Elemental Projectile Modifier")]
+    [SerializeField] private float EPDamageMod = 2.0f;
+    [SerializeField] private float EPSpeedMod = 5.0f;
+
 
     private bool isHit = false;
 
     // Start is called before the first frame update
     private void Start()
     {
+        if (GameManager_Upgrades.Instance != null)
+        {
+            damage += GameManager_Upgrades.EP_Damage * EPDamageMod;
+            speed += GameManager_Upgrades.EP_Speed * EPSpeedMod;
+        }
     }
 
     private void Update()
