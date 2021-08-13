@@ -11,7 +11,8 @@ public class ToggleSetActive : MonoBehaviour
     private void Start()
     {
         toggle = this.gameObject.GetComponent<Toggle>();
-        OnToggleChange();
+        toggle.isOn = targetObject.activeSelf;
+       //OnToggleChange();
     }
 
     public void OnToggleChange()

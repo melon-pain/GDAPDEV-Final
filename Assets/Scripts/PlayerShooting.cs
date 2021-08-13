@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float EPDamageMod = 1.0f;
     [SerializeField] private float EPSpeed = 2.0f;
     [SerializeField] private float EPFireRate = 0.5f;
+
+    [Space(4.0f)] public UnityEvent OnSingleFire;
 
     private bool isFiring = false;
     private bool isFiringBeam = false;
@@ -80,6 +83,7 @@ public class PlayerShooting : MonoBehaviour
         Projectile projectile = pool.GetObjectFromPool().GetComponent<Projectile>();
         projectile.Activate(this.element, pos, dir);
         player.mana.Consume(manaCost);
+        OnSingleFire.Invoke();
         ticks = 0.0f;
     }
 
