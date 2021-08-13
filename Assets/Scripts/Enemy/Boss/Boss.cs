@@ -93,7 +93,9 @@ public class Boss : MonoBehaviour
         if (HP <= 0.0f)
         {
             isDead = true;
+            isShooting = false;
             OnDeath.Invoke();
+            Destroy(this.gameObject);
         }
     }
 

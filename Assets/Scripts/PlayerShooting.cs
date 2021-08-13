@@ -29,6 +29,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float EPSpeed = 2.0f;
     [SerializeField] private float EPFireRate = 0.5f;
 
+    [Header("Core")]
+    [SerializeField] private MeshRenderer mesh;
+
     [Space(4.0f)] public UnityEvent OnSingleFire;
 
     private bool isFiring = false;
@@ -110,11 +113,26 @@ public class PlayerShooting : MonoBehaviour
     public void ChangeElement(Element newElement)
     {
         this.element = newElement;
+        switch (this.element)
+        {
+            case Element.Fire:
+                mesh.material.color = Color.red;
+                break;
+            case Element.Water:
+                mesh.material.color = Color.blue;
+                break;
+            case Element.Electric:
+                mesh.material.color = Color.magenta;
+                break;
+            case Element.Ice:
+                mesh.material.color = Color.cyan;
+                break;
+        }
     }
 
     public void LockOn(TapEventData tapEventData)
     {
-        if (tapEventData.gameObject && tapEventData.gameObject.tag == "Enemy")
+        if (tapEventData.gameObject && (tapEventData.gameObject.tag == "Enemy" || tapEventData.gameObject.tag == "Boss Plate") )
         {
             this.target = tapEventData.gameObject;
             crosshair.transform.parent = target.transform;
