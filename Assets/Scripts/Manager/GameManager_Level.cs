@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum LevelClear
-{
-    Fail,
-    Success
-}
-
 public class GameManager_Level : MonoBehaviour
 {
+    GameManager gameManager;
     public static GameManager_Level Instance;
-    private LevelClear levelClear;
+
     public static int score { get; private set; }
-    public int enemiesKilled = 0;
+    public static int highScore { get; private set; } = 0;
+    public static bool levelClear;
+    public static int enemyKillCount;
+    public static int essenceGained;
+
+private const int enemyScore = 20;
     private const int enemyEssenceDrop = 2;
 
     void OnEnable()
@@ -26,18 +26,42 @@ public class GameManager_Level : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        levelClear = false;
+        score = 0;
+        enemyKillCount = 0;
+        essenceGained = 0;
+        SetInitialReferences();
+        gameManager.GameOverEvent += Results;
     }
 
-    public static void AddScore(int amount)
+    private void OnDisable()
     {
-        score += amount;
+        gameManager.GameOverEvent -= Results;
     }
 
-    public void AddEssenceToCurrency(int amount)
+    private void SetInitialReferences()
     {
-        if(levelClear == LevelClear.Success)
+        gameManager = GetComponent<GameManager>();
+    }
+
+    private void AddEssenceToCurrency(int amount)
+    {
+        Debug.Log("Added Currency");
+        GameManager_Currency.AddEssence(enemyKillCount * enemyEssenceDrop);
+    }
+
+    public void Results()
+    {
+        score = enemyKillCount * enemyScore;
+        if(highScore < score)
         {
-            GameManager_Currency.AddEssence(enemiesKilled * enemyEssenceDrop);
+            highScore = score;
+        }
+        if(levelClear == true)
+        {
+            essenceGained += enemyKillCount * enemyEssenceDrop;
+            AddEssenceToCurrency(essenceGained);
         }
     }
+
 }

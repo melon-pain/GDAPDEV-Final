@@ -114,6 +114,8 @@ public class Player : MonoBehaviour
     {
         //Display results
         Debug.Log("Player Dead!");
+        if(GameManager_Level.Instance != null)
+            GameManager_Level.levelClear = false;
         OnDeath.Invoke();
     }
 
