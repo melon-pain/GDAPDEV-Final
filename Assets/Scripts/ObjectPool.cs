@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour
     private int currentObject = -1;
 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         original.SetActive(false);
         for (int i = 0; i < poolCount; i++)
