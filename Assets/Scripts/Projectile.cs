@@ -60,6 +60,11 @@ public class Projectile : MonoBehaviour
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.TakeDamage(this.element, this.damage);
         }
+        else if (collision.gameObject.tag == "Boss Plate")
+        {
+            BossPlate plate = collision.gameObject.GetComponent<BossPlate>();
+            plate.TakeDamage(this.element, this.damage);
+        }
 
         StopAllCoroutines();
         StartCoroutine(Deactivate());
