@@ -105,7 +105,12 @@ public class PlayerShooting : MonoBehaviour
         //beamTarget.transform.position = new Vector3(dragEventData.TargetFinger.position.x, dragEventData.TargetFinger.position.y, 5.0f);
 
         //beam.GetComponent<Beam>().SetBeamStartPosition(r.origin);
-        beam.GetComponent<Beam>().SetBeamEndPosition(r.origin + r.direction * 15.0f);
+        GameObject hitObject = dragEventData.HitObject;
+        
+        if (hitObject)
+            beam.GetComponent<Beam>().SetBeamEndPosition(hitObject.transform.position);
+        else
+            beam.GetComponent<Beam>().SetBeamEndPosition(r.origin + r.direction * 20.0f);
         //beamTarget.transform.position = Vector3.ProjectOnPlane(beamTarget.transform.position, Vector3.forward);
 
     }
@@ -151,6 +156,8 @@ public class PlayerShooting : MonoBehaviour
         this.target = null;
         crosshair.transform.parent = this.transform;
         crosshair.transform.localPosition = Vector3.forward;
+        crosshair.transform.localRotation = Quaternion.identity;
+        crosshair.transform.localScale = Vector3.one;
     }
 
     public void SetFiring(bool value)

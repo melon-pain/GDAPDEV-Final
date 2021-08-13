@@ -59,9 +59,9 @@ public class EnemySpawn : MonoBehaviour
         enemyInWaveCount--;
         if (enemyCount <= 0)
         {
-            Boss boss_copy = GameObject.Instantiate(boss, this.transform).GetComponent<Boss>();
-            boss_copy.SetPath(bossPath);
-            boss_copy.cart.m_Position = 0.0f;
+            boss.SetActive(true);
+            boss.GetComponent<Boss>().SetPath(bossPath);
+            boss.GetComponent<Boss>().cart.m_Position = 0.0f;
 
         }
         else if (enemyInWaveCount <= 0)
