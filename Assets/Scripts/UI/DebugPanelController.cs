@@ -18,7 +18,6 @@ public class DebugPanelController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Destroying");
             Destroy(this.gameObject);
         }
 
