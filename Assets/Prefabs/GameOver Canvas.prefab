@@ -636,6 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: {fileID: 8439411068012812779}
   time: {fileID: 1910248355311318098}
+  calculateScore: {fileID: 8116093208045300772}
   highScore: {fileID: 33339793215099013}
   score: {fileID: 8439411068987358094}
   essence: {fileID: 8439411069738703281}

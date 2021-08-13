@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject player; //Player reference
     private Animator animator;
-
+    private EnemySFX sfx;
     public UnityEvent OnDeath;
 
     // Start is called before the first frame update
@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
         shootInterval = Random.Range(1.0f, 2.0f);
         player = GameObject.FindGameObjectWithTag("Player");
         animator = this.GetComponent<Animator>();
+        sfx = this.GetComponent<EnemySFX>();
 
         this.Activate();
     }
@@ -92,6 +93,7 @@ public class Enemy : MonoBehaviour
         if (Elements.GetWeakness(this.element) == attackingElement)
         {
             this.HP -= amount;
+            sfx.PlayDamaged();
             if (this.HP <= 0.0f)
             {
                 isDead = true;

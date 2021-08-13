@@ -16,11 +16,14 @@ public class GameManager_Level : MonoBehaviour
     private bool isResults;
 
     public static int enemyKillCount;
+    public static int bossKillCount;
     public static int essenceGained;
 
     private const int enemyScore = 100;
+    private const int bossScore = 2000;
     private const int enemyEssenceDrop = 2;
-    public static float timeScoreMultiplier = 0.5f;
+    private const int bossEssenceDrop = 40;
+    public static float timeScoreMultiplier = 5.0f;
 
 
     void OnEnable()
@@ -66,17 +69,29 @@ public class GameManager_Level : MonoBehaviour
         score += enemyScore;
     }
 
+    public static void AddBossKillCount()
+    {
+        bossKillCount++;
+        score += bossScore;
+    }
+
     private void AddEssenceToCurrency(int amount)
     {
-        Debug.Log("Added Currency");
         GameManager_Currency.AddEssence(enemyKillCount * enemyEssenceDrop);
     }
 
     public void Results()
     {
         isResults = true;
-        finalScore = score - (int) (timer * timeScoreMultiplier);
-        
+        if (timer < 180 && levelClear)
+            finalScore = score + (int)(180 * timeScoreMultiplier) - (int)(timer * timeScoreMultiplier);
+        else if (timer >= 300 && levelClear)
+            finalScore = score - (int)(timer * timeScoreMultiplier);
+        else if (levelClear)
+            finalScore = score;
+        else if (!levelClear)
+            finalScore = score - 500;
+
         if (finalScore < 0)
             finalScore = 0;
 
@@ -85,7 +100,7 @@ public class GameManager_Level : MonoBehaviour
         
         if(levelClear == true)
         {
-            essenceGained += enemyKillCount * enemyEssenceDrop;
+            essenceGained += (enemyKillCount * enemyEssenceDrop) + (bossKillCount * bossEssenceDrop);
             AddEssenceToCurrency(essenceGained);
         }
     }

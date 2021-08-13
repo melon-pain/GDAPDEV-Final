@@ -15,6 +15,7 @@ public class EnemySpawn : MonoBehaviour
     [Header("Paths")]
     [SerializeField] private List<CinemachinePath> paths = new List<CinemachinePath>();
     [SerializeField] private CinemachinePath bossPath;
+    public UnityEvent OnBossSpawn;
 
     // Start is called before the first frame update
     private void Start()
@@ -62,7 +63,7 @@ public class EnemySpawn : MonoBehaviour
             boss.SetActive(true);
             boss.GetComponent<Boss>().SetPath(bossPath);
             boss.GetComponent<Boss>().cart.m_Position = 0.0f;
-
+            OnBossSpawn.Invoke();
         }
         else if (enemyInWaveCount <= 0)
         {

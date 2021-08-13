@@ -14,7 +14,7 @@ public class LevelText : MonoBehaviour
         if(GameManager_Level.Instance != null)
         {
             score.text = $"Score: {GameManager_Level.score}";
-            timer.text = $"Time: {(int)GameManager_Level.timer}";
+            timer.text = $"Time: {GameManager_Level.timer.ToString("F2")}s";
         }
     }
 }
