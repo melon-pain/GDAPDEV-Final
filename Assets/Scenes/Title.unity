@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 591604186}
-  sceneToLoad: GameScene
+  sceneToLoad: Level 1
 --- !u!1 &2042161465
 GameObject:
   m_ObjectHideFlags: 0
